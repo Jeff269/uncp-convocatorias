@@ -1,0 +1,47 @@
+
+#contenido>p{
+  text-align: center;
+  color: #025F45;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+#card{
+  width: 500px;
+  box-shadow: 0 0 10px #ABB5BD;
+  border-radius: 15px;
+  padding: 30px;
+  border-bottom: 7px solid #025F45;
+}
+
+.icon-exclamation{
+  color: #FED303;
+  font-size: 2em;
+}
+
+#card p{
+  color: #6E7592;
+  padding-right: 15%;
+  padding-left: 15%;
+  text-align: justify;
+}
+
+#card h4{
+  color: #025F45;
+  padding-left: 15px;
+}
+
+#card a{
+  padding: 8px;
+  color: #fff;
+  background-color: #025F45;
+  border: none;
+  box-shadow: 0 3px 10px #50B793;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+#redirect{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
