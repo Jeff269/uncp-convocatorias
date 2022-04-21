@@ -23,8 +23,10 @@ export class AdminComponent implements OnInit {
     this.menuMin = false;
     switch(this.router.url){
       case "/admin": this.menuActive = 1; break;
-      case "/admin/dependencias": this.menuActive = 2; break;
-      case "/admin/reportes": this.menuActive =3; break;
+      case "/admin/filtro": this.menuActive = 2; break;
+      case "/admin/dependencias": this.menuActive = 3; break;
+      case "/admin/convocatorias": this.menuActive = 4; break;
+      case "/admin/reportes": this.menuActive = 5; break;
     }
   }
 
@@ -42,10 +44,10 @@ export class AdminComponent implements OnInit {
   valRouteActive(get_route){
     switch(get_route){
       case "/admin": this.menuActive = 1; break;
-      case "dependencias": this.menuActive = 2; break;
-      case "reportes": this.menuActive = 3; break;
-      case "filtro": this.menuActive = 4; break;
-      case "actividades": this.menuActive = 5; break;
+      case "filtro": this.menuActive = 2; break;
+      case "dependencias": this.menuActive = 3; break;
+      case "convocatorias": this.menuActive = 4; break;
+      case "reportes": this.menuActive = 5; break;
     }
   }
 
