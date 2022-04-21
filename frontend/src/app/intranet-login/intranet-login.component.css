@@ -1,0 +1,90 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+#login-container{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#login{
+
+  margin: 20px;
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 0 10px #ABB5BD;
+
+}
+.t-v{
+  color: #025F45;
+  text-decoration: none;
+}
+.fcenter{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.tcenter{
+  text-align: center;
+}
+.icon-container{
+  position: relative;
+  width: 400px;
+}
+.icon-container>input{
+  width: 100%;
+  height: 45px;
+  border-radius: 25px;
+  padding-left: 15px;
+}
+
+.icon-container>input[type=text]{
+  border: 2px solid #ABB5BD;
+}
+.icon-container>input[type=submit]{
+  color: #fff;
+  background-color: #025F45;
+  border: none;
+  box-shadow: 0 3px 10px #50B793;
+}
+
+.input-icon{
+  margin-right: 7px;
+  background-color: #50B793;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  padding: 5px;
+  border-radius: 50%;
+}
+.submit-icon{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 35%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.soporte{
+  display: flex;
+}
+
+.soporte div{
+  margin: 5px;
+  padding: 5px;
+}
+
+.soporte a{
+  margin: 3px;
+}

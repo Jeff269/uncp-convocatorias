@@ -1,0 +1,172 @@
+#header-menu{
+    width: 100vw;
+    height: auto;
+    z-index: 2000;
+  }
+  #header{
+    width: 100vw;
+    margin: 0;
+    justify-content: flex-end;
+    padding-left: 15%;
+    padding-right: 15%;
+    color: #025F45;
+  }
+  #menu{
+    justify-content: space-between;
+    background-color: #025F45;
+    align-items: center;
+    padding-left: 15%;
+    padding-right: 15%;
+    height: 60px;
+  }
+  
+  .menu-route,.fc-menu-route{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+  }
+  
+  .circular-icon{
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    color: #025F45;
+    border-radius: 50%;
+    padding: 7px;
+  }
+  .menu-route p{
+    padding-top: 15px;
+    padding-left: 5px;
+    color: #fff;
+  }
+  button{
+    background: none;
+    border: 0;
+  }
+  
+  #user-info{
+    align-items: center;
+  }
+  #user-info p{
+    padding-top: 15px;
+    color: #fff;
+  }
+  #contenido{
+    height: 85vh;
+    margin: 0;
+  
+    width: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+  }
+  #contenido>div{
+    box-shadow: 0 0 10px #ABB5BD;
+    border-radius: 0 0 15px 15px;
+  }
+  hr{
+    margin: 2px;
+  }
+  .fc-menu{
+    font-size: 0.9em;
+  }
+  
+  .fc-menu-route p{
+    height: 30px;
+    padding-top: 15px;
+    padding-left: 5px;
+    color: #025F45;
+  }
+  
+  .fc-circular-icon{
+    width: 20px;
+    height: 20px;
+    color: #fff;
+    background-color: #025F45;
+    border-radius: 50%;
+    padding: 7px;
+  }
+  
+  .ext-border{
+    width: 42px;
+    height: 42px;
+    padding: 3px;
+    margin: 0;
+    border: 1px solid #025F45;
+    border-radius: 50%;
+  }
+  .fc-input{
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  
+  .fc-input input[type = file]{
+    padding-left: 10px;
+    border: none;
+  }
+  
+  .fc-input input{
+    padding-left: 10px;
+    border-radius: 25px;
+    border: 2px solid #ABB5BD;
+  }
+  
+  
+  
+  .fc-input b{
+    color: #E62248;
+  }
+  
+  .message p{
+    margin: 10px;
+    background-color: #E7E6E6;
+    padding: 10px;
+    color: #E62248;
+    font-weight: bolder;
+  }
+  
+  .input-submit{
+    margin: 10px;
+    padding: 5px;
+    width: 200px;
+    border-radius: 25px;
+    border: none;
+    background-color: #025F45;
+    color: #fff;
+    box-shadow: 0 3px 6px #50B793 ;
+  }
+  
+  #resumen{
+    padding: 15px;
+  }
+  
+  #resumen table{
+    text-align: center;
+    font-size: 0.8em;
+    border: 1px solid #6E7592;
+  }
+  
+  .color-rojo{
+    padding-top: 4px;
+    color: #E62248;
+  }
+  .message-blue p{
+    color: blue !important;
+  }
+  
+  .message-blue input[type = checkbox]{
+      width: 100px;
+  }
+  
+  .t-head{
+    background-color: #025F45;
+    color: #fff;
+  }
+  
+  #add-info{
+    padding-right: 15%;
+    padding-left: 15%;
+    padding-top: 30px;
+    text-align: justify;
+  }
+  
+  

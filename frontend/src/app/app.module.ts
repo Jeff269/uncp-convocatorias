@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { PublicComponent } from './public/public.component';
 import { IntranetComponent } from './intranet/intranet.component';
 import { AdminComponent } from './admin/admin.component';
-import { IntranetLoginComponent } from './intranet/intranet-login/intranet-login.component';
-import { IntranetRegisterComponent } from './intranet/intranet-register/intranet-register.component';
+
 import { IntranetUpdatepassComponent } from './intranet/intranet-updatepass/intranet-updatepass.component';
 import { IntranetIndexComponent } from './intranet/intranet-index/intranet-index.component';
 import { IntranetFcDatospersComponent } from './intranet/intranet-fc-datospers/intranet-fc-datospers.component';
@@ -20,6 +26,16 @@ import { IntranetConvFollowComponent } from './intranet/intranet-conv-follow/int
 import { PublicConvocatoriasComponent } from './public/public-convocatorias/public-convocatorias.component';
 import { PublicContactoComponent } from './public/public-contacto/public-contacto.component';
 import { PublicConvocatoriasDetallesComponent } from './public/public-convocatorias-detalles/public-convocatorias-detalles.component';
+import { IntranetLoginComponent } from './intranet-login/intranet-login.component';
+import { IntranetRegisterComponent } from './intranet-register/intranet-register.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AdminUsuariosComponent } from './admin/admin-usuarios/admin-usuarios.component';
+import { AdminReportesComponent } from './admin/admin-reportes/admin-reportes.component';
+import { AdminFiltroComponent } from './admin/admin-filtro/admin-filtro.component';
+import { AdminConvocatoriasComponent } from './admin/admin-convocatorias/admin-convocatorias.component';
+import { AdminPlazasComponent } from './admin/admin-plazas/admin-plazas.component';
+import { AdminPostulantesComponent } from './admin/admin-postulantes/admin-postulantes.component';
+import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dependencias.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +43,7 @@ import { PublicConvocatoriasDetallesComponent } from './public/public-convocator
     PublicComponent,
     IntranetComponent,
     AdminComponent,
-    IntranetLoginComponent,
-    IntranetRegisterComponent,
+ 
     IntranetUpdatepassComponent,
     IntranetIndexComponent,
     IntranetFcDatospersComponent,
@@ -40,11 +55,28 @@ import { PublicConvocatoriasDetallesComponent } from './public/public-convocator
     IntranetConvFollowComponent,
     PublicConvocatoriasComponent,
     PublicContactoComponent,
-    PublicConvocatoriasDetallesComponent
+    PublicConvocatoriasDetallesComponent,
+    IntranetLoginComponent,
+    IntranetRegisterComponent,
+    UnauthorizedComponent,
+    AdminUsuariosComponent,
+    AdminReportesComponent,
+    AdminFiltroComponent,
+    AdminConvocatoriasComponent,
+    AdminPlazasComponent,
+    AdminPostulantesComponent,
+    AdminDependenciasComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 2000
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

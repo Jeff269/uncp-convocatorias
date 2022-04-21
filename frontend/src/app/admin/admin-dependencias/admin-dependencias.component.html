@@ -1,0 +1,316 @@
+
+<div class="inicio">
+    <div class="col-12">
+        <p class="mt-4 mb-2 text-secondary" style="font-weight: 500;">Universidad Nacional del Centro del Perú</p>
+        <h3 class="fw-bold mt-2 mb-4">Administración de Dependencias</h3>
+        <hr class="mb-2">
+
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add-csv" (click)='resetForm(modalFormCSV)'><i class="fas fa-file-import"></i> Importar CSV</button>
+
+        <form class="row mt-2" #searchForm="ngForm" (submit)="filtrar(search.value, search_type.value)">
+            <div class="col-md-3 col-sm-3 mb-2">
+                <select class="form-select" aria-label="Default select example" #search_type (change)="filtrar(search.value, search_type.value);">
+                    <option value="nombre" selected>Nombre</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 mb-2">
+                <input type="text" class="form-control" placeholder="Buscar Dependencia" aria-label="Search" #search (keyup)="filtrar(search.value, search_type.value);">
+            </div>
+            <div class="col-md-3 col-sm-3 mb-2">
+                <button type="submit" class="btn w-100 btn-success"><i class="fas fa-search"></i> Buscar</button>
+                <!--<button type="submit" class="btn w-100 btn-success" data-bs-toggle="modal" data-bs-target="#modal-add">Buscar <i class="fas fa-user-plus"></i></button>-->
+            </div>
+        </form>
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-sm  text-start table-hover">
+                        <thead class="table-dark">
+                            <tr class="align-middle">
+                                <th class="pt-2 pb-2 pl-2 pr-2 text-center" scope="col">#</th>
+                                <th scope="col">NOMBRE</th>
+                                <th scope="col" class="text-center">OPERACIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+    
+                            <ng-container *ngIf="ready">
+                                <tr class="align-middle" *ngFor="let data of dependencias; let i = index" >
+                                    <td class="text-center">{{(pageActive-1)*pageSize+i+1}}</td>
+                                    <td>{{data.nombre}}</td>
+                                    <td class="text-center">
+                                        <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)='edit(data)'><i class="fas fa-edit"></i> Modificar</button>
+                                        <button style="width:140px;" type="button" class="btn btn-sm btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modal-confirm" (click)='eliminar(data)' [disabled]="data.idregistro!=null"><i class="fas fa-trash"></i> Eliminar</button>
+                                    </td>
+                                </tr>
+                            </ng-container>
+            
+                            <ng-container *ngIf="!ready">
+                                <tr>
+                                    <td colspan="7" class="pt-3 pb-3">
+                                        <div id="load_table" class="w-100">
+                                            <div class="text-center">
+                                                <div class="spinner-border text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+    
+                            <ng-container *ngIf="ready && dependencias.length==0">
+                                <tr>
+                                    <td>-</td>
+                                    <td>No hay datos</td>
+                                </tr>
+                            </ng-container>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                      </li>
+                      
+                      <li *ngFor="let page of pages" class="page-item" [ngClass]="{'active': pageActive == page.pagina}" #elemPagination><a class="page-link" (click)="getDependencias(page.pagina)" style="cursor:pointer;">{{page.pagina}}</a></li>
+    
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#">Siguiente</a>
+                      </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- MODAL ADD -->
+<!-- MODAL ADD -->
+<div class="modal fade bd-example-modal-sm" id="modal-add" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <div class="container-fluid modal-body" style="padding:15px;">
+                <div class="row justify-content-center"> 
+                    <div class="col-md-12">
+
+                                <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-times"></i></button>
+                                
+                                <form #modalForm="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="submit(modalForm)" novalidate=""> 
+                                    <h4 *ngIf="!dependencia.id" style="margin-bottom:18px;width:80%;">REGISTRAR DEPENDENCIA</h4>
+                                    <h4 *ngIf="dependencia.id" style="margin-bottom:18px;width:80%;">MODIFICAR DEPENDENCIA</h4>
+
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
+                                        </div>
+                                    </nav>
+                                    <div class="row justify-content-center">   
+                                        <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
+
+                                            <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                                                <br>
+                                                <div class="form-group row mb-3">
+                                                    <label for="inputNOM" class="col-sm-3 col-form-label">Nombre*</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" autocomplete="off" [ngClass]="{'is-invalid': nombre.invalid && (nombre.dirty || nombre.touched)}" placeholder="Nombre de la dependencia" [disabled]="!btn" [(ngModel)]="dependencia.nombre" name="nombre" #nombre="ngModel" required>
+                                                                    
+                                                        <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="invalid-feedback">
+                                                            <div *ngIf="nombre.errors?.['required']">
+                                                                Necesitas completar este campo.
+                                                            </div>
+                                                            <div *ngIf="nombre.errors?.['minlength']">
+                                                                Name must be at least 4 characters long.
+                                                            </div>
+                                                            <div *ngIf="nombre.errors?.['forbiddenName']">
+                                                                Name cannot be Bob.
+                                                            </div>
+                                                        </div>                                
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                                      
+
+                                    <div class="w-100" style="height:12px;"></div>
+                                    <div class="msg-ajax-result"></div>
+
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button *ngIf="btn" type="submit" class="btn w-100 btn-success btn_modals" [disabled]="!modalForm.form.valid"><i class="far fa-lg fa-save"></i> Guardar</button>
+                                            <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
+                                           
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                                
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL ADD CSV -->
+<!-- MODAL ADD CSV -->
+<div class="modal fade bd-example-modal-sm" style="z-index: 5000;" id="modal-add-csv" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <div class="container-fluid modal-body" style="padding:15px;">
+                <div class="row justify-content-center"> 
+                    <div class="col-md-12">
+
+                                <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-times"></i></button>
+                                
+                                <form #modalFormCSV="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="importar(modalFormCSV)" novalidate="">
+                                    <h4 style="margin-bottom:18px;width:80%;">SUBIR GRUPO DE DEPENDENCIAS</h4>
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
+                                        </div>
+                                    </nav>
+                                    <div class="row justify-content-center">   
+                                        <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
+                                            <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                                                <br>
+                                                <div class="row justify-content-center mb-2">
+                                                    <div class="col-12">
+                                                        <p class="text-muted">Guarde su archivo EXCEL en formtato CSV con la siguiente estructura y subalo aquí.</p>
+                                                        <table class="table table-sm table-bordered table-success">
+                                                            <thead>
+                                                              <tr class="table-dark">
+                                                                <th scope="col">DEPENDENCIA</th>
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>    
+                                                                <td>Nombre 1</td>                                                    
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Nombre 2</td>                                                   
+                                                              </tr>
+                                                              <tr>
+                                                                <td>...</td>                                                    
+                                                              </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 text-center">       
+                                                        <div class="form-group col-12 mb-2 text-center">
+                                                            <h5>Seleccione el documento a subir</h5>
+                                                            <div class="custom-file d-block">                                            
+                                                                <label class="upload-drop-zone w-100 float-left mb-1 p-2 area_upload" (click)="inputFILE.click()">
+                                                                    <span *ngIf="!fileExtension" style="line-height: 200px;">Click aquí</span>                  
+                                                                    <div *ngIf="fileExtension=='csv'" class="document_upload" (click)="selectedFile($event)">
+                                                                        <span style="color:rgb(39, 141, 36);">
+                                                                            <i class="fas fa-5x fa-file-csv"></i>
+                                                                        </span>
+                                                                        <br>
+                                                                        <span *ngIf="file" style="font-size: 0.9em; color:grey;">
+                                                                            {{file.name}}
+                                                                        </span> 
+                                                                        <br>
+                                                                        <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
+                                                                    </div>               
+                                                                    <div *ngIf="fileExtension=='doc' || fileExtension=='docx'" class="document_upload" (click)="selectedFile($event)">
+                                                                        <span style="color:rgb(28, 96, 224);">
+                                                                            <i class="fas fa-5x fa-file-word"></i>
+                                                                        </span>
+                                                                        <br>
+                                                                        <span *ngIf="file" style="font-size: 0.9em; color:grey;">
+                                                                            {{file.name}}
+                                                                        </span>
+                                                                
+                                                                        <br>
+                                                                        <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
+                                                                    </div>
+                                                                </label>
+                                                                <input type="file" id="input-file-modal" class="custom-file-input d-none" accept=".csv" (change)="seleccionFile($event)"  [disabled]="!btn" #inputFILE>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                      
+
+                                    <div class="w-100" style="height:12px;"></div>
+                                    <div class="msg-ajax-result"></div>
+
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button *ngIf="btn" type="submit" class="btn w-100 btn-success btn_modals" [disabled]="!modalFormCSV.form.valid"><i class="far fa-lg fa-save"></i> Guardar</button>
+                                            <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
+                                           
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                                
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Confirm-->
+<div class="modal fade" id="modal-confirm" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Confirmar accion</h4>
+            <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-lg fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro que desea eliminar el elemento?
+            </div>
+            <div class="modal-footer p-1">
+                <div class="row w-100">
+                    <div class="col-sm-6">
+                        <button *ngIf="btn" type="button" class="btn w-100 btn-danger m-1" (click)='eliminar({})'>Si</button>
+                        <button *ngIf="!btn" type="button" class="btn w-100 btn-danger m-1" (click)='eliminar({})'  disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn w-100 btn-secondary m-1" (click)="closeConfirm()" [disabled]="!btn">No</button>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

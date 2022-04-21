@@ -1,6 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminConvocatoriasComponent } from './admin/admin-convocatorias/admin-convocatorias.component';
+import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dependencias.component';
+import { AdminFiltroComponent } from './admin/admin-filtro/admin-filtro.component';
+import { AdminPlazasComponent } from './admin/admin-plazas/admin-plazas.component';
+import { AdminPostulantesComponent } from './admin/admin-postulantes/admin-postulantes.component';
+import { AdminReportesComponent } from './admin/admin-reportes/admin-reportes.component';
+import { AdminUsuariosComponent } from './admin/admin-usuarios/admin-usuarios.component';
 import { AdminComponent } from './admin/admin.component';
+import { AuthAdminGuard } from './auth-admin.guard';
+import { AuthBlockGuard } from './auth-block.guard';
+import { AuthGuard } from './auth.guard';
+import { IntranetLoginComponent } from './intranet-login/intranet-login.component';
+import { IntranetRegisterComponent } from './intranet-register/intranet-register.component';
 import { IntranetConvAllComponent } from './intranet/intranet-conv-all/intranet-conv-all.component';
 import { IntranetConvFollowComponent } from './intranet/intranet-conv-follow/intranet-conv-follow.component';
 import { IntranetFcCursosComponent } from './intranet/intranet-fc-cursos/intranet-fc-cursos.component';
@@ -9,24 +21,14 @@ import { IntranetFcExpComponent } from './intranet/intranet-fc-exp/intranet-fc-e
 import { IntranetFcFormprofComponent } from './intranet/intranet-fc-formprof/intranet-fc-formprof.component';
 import { IntranetFcInfoaddComponent } from './intranet/intranet-fc-infoadd/intranet-fc-infoadd.component';
 import { IntranetIndexComponent } from './intranet/intranet-index/intranet-index.component';
-import { IntranetLoginComponent } from './intranet/intranet-login/intranet-login.component';
-import { IntranetRegisterComponent } from './intranet/intranet-register/intranet-register.component';
+
 import { IntranetUpdatepassComponent } from './intranet/intranet-updatepass/intranet-updatepass.component';
 import { IntranetComponent } from './intranet/intranet.component';
 import { PublicComponent } from './public/public.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 
 const routes: Routes = [
-  {
-    path: 'admin', 
-    component: AdminComponent,
-    children: [
-      {
-        path: '',
-        component: AdminComponent
-      }
-    ]
-  },
   {
     path: '', 
     component: PublicComponent,
@@ -37,21 +39,63 @@ const routes: Routes = [
       }
     ]
   },
+
+
+  {
+    path: 'admin', 
+    component: AdminComponent,
+    canActivate: [AuthAdminGuard],
+    canActivateChild: [AuthAdminGuard],
+    children: [
+      {
+        path: '',
+        component: AdminUsuariosComponent
+      },
+      {
+        path: 'reportes',
+        component: AdminReportesComponent
+      },
+      {
+        path: 'filtro',
+        component: AdminFiltroComponent
+      },
+      {
+        path: 'dependencias',
+        component: AdminDependenciasComponent
+      },
+      {
+        path: 'convocatorias',
+        component: AdminConvocatoriasComponent
+      },
+      {
+        path: 'plazas',
+        component: AdminPlazasComponent
+      },
+      {
+        path: 'postulantes',
+        component: AdminPostulantesComponent
+      }
+    ]
+  },
+ 
+
+  {
+    path: 'register',
+    component: IntranetRegisterComponent
+  },
+  {
+    path: 'login',
+    component: IntranetLoginComponent
+  },
   {
     path: 'intranet', 
     component: IntranetComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       {
         path: '',
         component: IntranetIndexComponent
-      },
-      {
-        path: 'register',
-        component: IntranetRegisterComponent
-      },
-      {
-        path: 'login',
-        component: IntranetLoginComponent
       },
       {
         path: 'updatepass',
@@ -87,6 +131,13 @@ const routes: Routes = [
       }
     ]
   },
+
+  {
+    path: 'unauthorized',
+    component: UnauthorizedComponent,
+    canActivate: [AuthBlockGuard]
+  }
+
 ];
 
 

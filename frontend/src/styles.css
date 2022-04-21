@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mw-80{
+    min-width: 80px !important;
+}
+.mw-100{
+    min-width: 100px !important;
+}
+.mw-150{
+    min-width: 150px !important;
+}
+.mw-200{
+    min-width: 200px !important;
+}
+.mw-250{
+    min-width: 250px !important;
+}
+
+
+.modal{
+    background: rgba(0, 0, 0, 0.363) !important;
+}
