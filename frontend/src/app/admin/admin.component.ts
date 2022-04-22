@@ -27,6 +27,8 @@ export class AdminComponent implements OnInit {
       case "/admin/dependencias": this.menuActive = 3; break;
       case "/admin/convocatorias": this.menuActive = 4; break;
       case "/admin/reportes": this.menuActive = 5; break;
+
+      case "/admin/postulantes": this.menuActive = 7; break;
     }
   }
 
@@ -48,6 +50,8 @@ export class AdminComponent implements OnInit {
       case "dependencias": this.menuActive = 3; break;
       case "convocatorias": this.menuActive = 4; break;
       case "reportes": this.menuActive = 5; break;
+
+      case "postulantes": this.menuActive = 7; break;
     }
   }
 

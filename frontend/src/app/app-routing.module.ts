@@ -4,6 +4,7 @@ import { AdminConvocatoriasComponent } from './admin/admin-convocatorias/admin-c
 import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dependencias.component';
 import { AdminFiltroComponent } from './admin/admin-filtro/admin-filtro.component';
 import { AdminPlazasComponent } from './admin/admin-plazas/admin-plazas.component';
+import { AdminPostulantesPlazaComponent } from './admin/admin-postulantes-plaza/admin-postulantes-plaza.component';
 import { AdminPostulantesComponent } from './admin/admin-postulantes/admin-postulantes.component';
 import { AdminReportesComponent } from './admin/admin-reportes/admin-reportes.component';
 import { AdminUsuariosComponent } from './admin/admin-usuarios/admin-usuarios.component';
@@ -65,6 +66,10 @@ const routes: Routes = [
         component: AdminDependenciasComponent
       },
       {
+        path: 'postulantes',
+        component: AdminPostulantesComponent
+      },
+      {
         path: 'convocatorias',
         component: AdminConvocatoriasComponent
       },
@@ -74,7 +79,7 @@ const routes: Routes = [
       },
       {
         path: 'convocatorias/:id/plaza/:id',
-        component: AdminPostulantesComponent
+        component: AdminPostulantesPlazaComponent
       }
     ]
   },

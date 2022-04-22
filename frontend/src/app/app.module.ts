@@ -36,6 +36,7 @@ import { AdminConvocatoriasComponent } from './admin/admin-convocatorias/admin-c
 import { AdminPlazasComponent } from './admin/admin-plazas/admin-plazas.component';
 import { AdminPostulantesComponent } from './admin/admin-postulantes/admin-postulantes.component';
 import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dependencias.component';
+import { AdminPostulantesPlazaComponent } from './admin/admin-postulantes-plaza/admin-postulantes-plaza.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dep
     AdminConvocatoriasComponent,
     AdminPlazasComponent,
     AdminPostulantesComponent,
-    AdminDependenciasComponent
+    AdminDependenciasComponent,
+    AdminPostulantesPlazaComponent
   ],
   imports: [
     CommonModule,

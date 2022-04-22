@@ -6,8 +6,8 @@
     <div class="nav-min">
         <div class="container-fluid">
             <div class="row">
-               <div class="col-12">
-                   <h3 class="mt-2 mb-5 fw-bold"><i class="fas fa-th"></i></h3>
+                <div class="col-12">
+                    <img class="mt-4 mb-5" src="assets/uncp-logo.png" alt="" height="25">
                    <hr>
                </div>
                <div class="col-12 p-0">    
@@ -66,10 +66,11 @@
     <nav class="position-relative float-start h-100">
         <div class="container-fluid">
             <div class="row">
-               <div class="col-12">
-                   <h3 class="mt-2 fw-bold"><i class="fas fa-th"></i> Panel de Administración</h3>
-                   <hr>
-               </div>
+                <div class="col-12 text-center">
+                    <img class="mt-2" src="assets/uncp-logo.png" alt="" height="80">
+                    <h5 class="mt-2 fw-bold">Universidad Nacional del Centro del Perú</h5>
+                    <hr>
+                </div>  
                <div class="col-12 p-0">   
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item bg-transparent">
@@ -107,6 +108,13 @@
                         Usuarios
                     </button>
                     -->
+                    <button routerLink="postulantes" type="button" class="w-100 panel-menu-item bg-transparent border-0 pt-2 pb-2 ps-2 pe-2 text-start" (click)="valRouteActive('postulantes');" [ngClass]="{'menu_active_btn': menuActive==7}">
+                        <span class="float-start text-center me-2" style="width: 35px;" [ngClass]="{'menu_active': menuActive==7}">
+                            <i class="fa-solid fa-users-line"></i>
+                        </span>
+                         Postulantes
+                    </button>
+
                     <button routerLink="dependencias" type="button" class="w-100 panel-menu-item bg-transparent border-0 pt-2 pb-2 ps-2 pe-2 text-start" (click)="valRouteActive('dependencias');" [ngClass]="{'menu_active_btn': menuActive==3}">
                         <span class="float-start text-center me-2" style="width: 35px;" [ngClass]="{'menu_active': menuActive==3}">
                             <i class="fas fa-sitemap"></i>
