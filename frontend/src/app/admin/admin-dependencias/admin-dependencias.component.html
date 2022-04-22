@@ -41,7 +41,7 @@
                                     <td>{{data.nombre}}</td>
                                     <td class="text-center">
                                         <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)='edit(data)'><i class="fas fa-edit"></i> Modificar</button>
-                                        <button style="width:140px;" type="button" class="btn btn-sm btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modal-confirm" (click)='eliminar(data)' [disabled]="data.idregistro!=null"><i class="fas fa-trash"></i> Eliminar</button>
+                                        <button style="width:140px;" type="button" class="btn btn-sm btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modal-confirm" (click)='eliminar(data)'><i class="fas fa-trash"></i> Eliminar</button>
                                     </td>
                                 </tr>
                             </ng-container>
@@ -64,6 +64,7 @@
                                 <tr>
                                     <td>-</td>
                                     <td>No hay datos</td>
+                                    <td>-</td>
                                 </tr>
                             </ng-container>
                             

@@ -8,9 +8,9 @@
     if(isset($_GET['size']) && isset($_GET['offset'])){
         $size = $_GET['size'];
         $offset = $_GET['offset'];
-        $query = "SELECT * FROM dependencias LEFT JOIN registros ON dependencias.iddependencia = registros.dependencias_iddependencia GROUP BY iddependencia ORDER BY nombre ASC LIMIT $size OFFSET $offset;"; 
+        $query = "SELECT * FROM dependencias ORDER BY iddependencia DESC LIMIT $size OFFSET $offset;"; 
     }else{
-        $query = "SELECT * FROM dependencias LEFT JOIN registros ON dependencias.iddependencia = registros.dependencias_iddependencia GROUP BY iddependencia ORDER BY nombre ASC;";
+        $query = "SELECT * FROM dependencias ORDER BY iddependencia DESC;";
     }
     
 
@@ -27,8 +27,7 @@
 
         $json[] = array(
             'id' => $row['iddependencia'],
-            'idregistro' => $row['idregistro'],
-            'nombre' => $row['nombre']
+            'nombre' => $row['nombre_dep']
         );   
     
     }

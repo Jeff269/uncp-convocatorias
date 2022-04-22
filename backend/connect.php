@@ -3,7 +3,7 @@ header('Content-Type: text/html; charset=utf-8');
 define("SERVER", "localhost");
 define("USER", "root");
 define("PASSWORD", "ae9a56ed87");
-define("DBNAME", "asistenciacas");
+define("DBNAME", "certificados_fudec");
 
 define("URI",dirname(__FILE__)."/");
 

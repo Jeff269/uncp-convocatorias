@@ -13,11 +13,11 @@
 
     switch ($type) {
         case 'nombre':
-            $query = "SELECT * FROM dependencias LEFT JOIN registros ON dependencias.iddependencia = registros.dependencias_iddependencia WHERE nombre LIKE '%$key%' GROUP BY iddependencia ORDER BY nombre ASC LIMIT 20;";
+            $query = "SELECT * FROM dependencias WHERE nombre_dep LIKE '%$key%' GROUP BY iddependencia ORDER BY iddependencia DESC LIMIT 20;";
             break;
         
         case 'email':
-            $query = "SELECT * FROM dependencias LEFT JOIN registros ON dependencias.iddependencia = registros.dependencias_iddependencia WHERE email LIKE '%$key%' GROUP BY iddependencia ORDER BY nombre ASC LIMIT 20;";
+            $query = "SELECT * FROM dependencias WHERE email LIKE '%$key%' GROUP BY iddependencia ORDER BY iddependencia DESC LIMIT 20;";
             break;
     }
 
@@ -35,8 +35,7 @@
         
         $json[] = array(
             'id' => $row['iddependencia'],
-            'idregistro' => $row['idregistro'],
-            'nombre' => $row['nombre']
+            'nombre' => $row['nombre_dep']
         ); 
     
     }

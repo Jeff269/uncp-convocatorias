@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
   
   async canActivate(){
     return true;
-    await this.auth.validarLoginPromise().then(
+    await this.auth.intranet_validarLoginPromise().then(
       res => {
         //console.log(res)
         if(res.code==200){
@@ -24,19 +24,19 @@ export class AuthGuard implements CanActivate {
           return true;
         }else{
           if(res.code==300){
-            this.router.navigate(['/unauthorized']);
+            this.router.navigate(['/login']);
             return false;
           }else{
             if(res.code==404){
-              //console.log("token invalido");
-              this.auth.removeToken();
-              window.location.href = '/login.php';
+              console.log("token invalido");
+              this.auth.intranet_removeToken();
+              this.router.navigate(['/login']);
               //this.router.navigate(['/login.php']);
               return false;
             }else{
               console.log("error con la base de datos")
-              this.auth.removeToken();
-              window.location.href = '/login.php';
+              this.auth.intranet_removeToken();
+              this.router.navigate(['/login']);
               return false;
             }
           }

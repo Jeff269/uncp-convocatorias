@@ -22,7 +22,6 @@ export class AuthService {
     window.location.href = "https://login.microsoftonline.com/57c17caf-c500-4ffc-9976-f85fc6c66d47/oauth2/v2.0/logout?%20post_logout_redirect_uri=https://oic.uncp.edu.pe";
   }
 
-
   getToken(){
     return localStorage.getItem('access_token');
   }
@@ -48,6 +47,47 @@ export class AuthService {
     const form_data = new FormData();
     form_data.append('authorization', this.getToken());
     return this.http.post<any>(this.URI+'validar_login.php',form_data);
+  }
+
+
+
+
+  /* 
+  -----------------------INTRANET------------------------
+  -----------------------INTRANET------------------------
+  -----------------------INTRANET------------------------
+  */
+
+  intranet_logout(){
+    this.intranet_removeToken();
+    window.location.href = "/login";
+  }
+
+  intranet_getToken(){
+    return localStorage.getItem('user_access_token');
+  }
+
+  intranet_removeToken(){
+    localStorage.removeItem('user_id_token');
+    localStorage.removeItem('user_access_token');
+  }
+
+  intranet_validarLoginPromise(){
+    return new Promise<any>( (resultado) => {
+      this.intranet_validarLogin().subscribe(
+        res => {
+          console.log(res)
+          this.login_user = res;
+          resultado(res);
+        }
+      )
+    });
+  }
+
+  intranet_validarLogin(){
+    const form_data = new FormData();
+    form_data.append('authorization', this.intranet_getToken());
+    return this.http.post<any>(this.URI+'intranet_validar_login.php',form_data);
   }
 
 

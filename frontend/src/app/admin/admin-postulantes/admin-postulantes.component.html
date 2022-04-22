@@ -1,1 +1,377 @@
-<p>admin-postulantes works!</p>
+
+<div class="inicio">
+    <div class="col-12">
+        <p class="mt-4 mb-2 text-secondary" style="font-weight: 500;">Oficina de Información y Comunicación</p>
+        <h3 class="fw-bold mt-2 mb-4">Administración de los Postulantes</h3>
+        <hr class="mb-2">
+
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add-csv" (click)='resetForm(modalFormCSV)'><i class="fas fa-file-import"></i> Importar CSV</button>
+
+        <form class="row mt-2" #searchForm="ngForm" (submit)="filtrar(search.value, search_type.value)">
+            <div class="col-md-3 col-sm-3 mb-2">
+                <select class="form-select" aria-label="Default select example" #search_type (change)="filtrar(search.value, search_type.value);">
+                    <option value="nombre" selected>Nombres</option>
+                    <option value="codigo">Codigo</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-6 mb-2">
+                <input type="text" class="form-control" placeholder="Buscar participantes" aria-label="Search" #search (keyup)="filtrar(search.value, search_type.value);">
+            </div>
+            <div class="col-md-3 col-sm-3 mb-2">
+                <button type="submit" class="btn w-100 btn-success"><i class="fas fa-search"></i> Buscar</button>
+                <!--<button type="submit" class="btn w-100 btn-success" data-bs-toggle="modal" data-bs-target="#modal-add">Buscar <i class="fas fa-user-plus"></i></button>-->
+            </div>
+        </form>
+        <div class="row mt-2">
+            <div class="col-12">
+                <h4>{{certificado.curso}} ({{pages[0].rows}})</h4>
+                <div class="table-responsive">
+                    <table class="table table-sm  text-start table-hover table-bordered">
+                        <thead class="table-dark">
+                            <tr class="align-middle">
+                                <th scope="col" class="pt-2 pb-2 pl-2 pr-2 text-center">N°</th>
+                                <th scope="col" class="text-uppercase text-center">NOMBRES</th>
+                                <th scope="col" class="text-uppercase text-center">APELLIDOS</th>
+                                <th scope="col" class="text-uppercase text-center">PARTICIPACIÓN</th>
+                                <th scope="col" class="text-uppercase text-center">CÓDIGO</th>
+                                <th scope="col" class="text-uppercase text-center">CERTIFICADO</th>
+                                <th scope="col" class="text-uppercase text-center">CALIFICACIÓN</th>
+                                <th scope="col" class="text-uppercase text-center">OPERACIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white">
+    
+                            <ng-container *ngIf="ready">
+                                <tr class="align-middle" *ngFor="let data of participantes; let i = index" >
+                                    <td class="text-center">{{(pageActive-1)*pageSize+i+1}}</td>
+                                    <td>{{data.nombres}}</td>
+                                    <td>{{data.apellidos}}</td>
+                                    <td class="text-center">{{data.participacion}}</td>
+                                    <td class="text-center">{{data.codigo}}</td>
+                                    <td class="text-center" *ngIf="certificado.post_ruta"><a [href]="'https://d2oilkmr0fadqd.cloudfront.net/FUDEC/Certificados/'+certificado.carpeta+'/'+data.codigo+certificado.post_ruta+'.pdf'" class="text-danger" target="_blank"><i class="far fa-2x fa-file-pdf"></i></a></td>
+                                    <td class="text-center" *ngIf="!certificado.post_ruta"><a [href]="'https://d2oilkmr0fadqd.cloudfront.net/FUDEC/Certificados/'+certificado.carpeta+'/'+data.codigo+'.pdf'" class="text-danger" target="_blank"><i class="far fa-2x fa-file-pdf"></i></a></td>
+                                    <td class="text-center">
+                                        <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" routerLink="/admin/convocatorias/{{certificado.id}}/plaza/{{data.id}}"><i class="fa-solid fa-list-check"></i> Evaluar</button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)='edit(data)'><i class="fas fa-edit"></i> Modificar</button>
+                                        <button style="width:140px;" type="button" class="btn btn-sm btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modal-confirm" (click)='eliminar(data)'><i class="fas fa-trash"></i> Eliminar</button>
+                                    </td>
+                                </tr>  
+                            </ng-container>
+            
+                            <ng-container *ngIf="!ready">
+                                <tr>
+                                    <td colspan="7" class="pt-3 pb-3">
+                                        <div id="load_table" class="w-100">
+                                            <div class="text-center">
+                                                <div class="spinner-border text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </ng-container>
+    
+                            <ng-container *ngIf="ready && participantes.length==0">
+                                <tr>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">-</td>
+                                    <td class="text-center">-</td>
+                                </tr>
+                            </ng-container>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                      </li>
+                      
+                      <li *ngFor="let page of pages" class="page-item" [ngClass]="{'active': pageActive == page.pagina}" #elemPagination><a class="page-link" (click)="getData(page.pagina)" style="cursor:pointer;">{{page.pagina}}</a></li>
+    
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#">Siguiente</a>
+                      </li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- MODAL ADD -->
+<!-- MODAL ADD -->
+<div class="modal fade bd-example-modal-sm" id="modal-add" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <div class="container-fluid modal-body" style="padding:15px;">
+                <div class="row justify-content-center"> 
+                    <div class="col-md-12">
+
+                                <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-times"></i></button>
+                                
+                                <form #modalForm="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="submit(modalForm)" novalidate=""> 
+                                    <h4 *ngIf="!participante.id" style="margin-bottom:18px;width:80%;">REGISTRAR PARTICIPANTE</h4>
+                                    <h4 *ngIf="participante.id" style="margin-bottom:18px;width:80%;">MODIFICAR PARTICIPANTE</h4>
+
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
+                                        </div>
+                                    </nav>
+                                    <div class="row justify-content-center">   
+                                        <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
+
+                                            <div class="col-lg-11 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                                                <br>
+                                                <div class="form-group row mb-3">
+                                                    <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 text-end lh-sm">N° de Participante*</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="number" class="form-control form-control-sm" [ngClass]="{'is-invalid': nro.invalid && (nro.dirty || nro.touched)}" placeholder="Número de participante" autocomplete="off" [disabled]="!btn" [(ngModel)]="participante.nro" name="nro" #nro="ngModel" required (input)="changeNumberParticipante()">                        
+                                                        <div *ngIf="nro.invalid && (nro.dirty || nro.touched)" class="invalid-feedback">
+                                                            <div *ngIf="nro.errors?.['required']">
+                                                                Necesitas completar este campo.
+                                                            </div>
+                                                            <div *ngIf="nro.errors?.['minlength']">
+                                                                Name must be at least 4 characters long.
+                                                            </div>
+                                                            <div *ngIf="nro.errors?.['forbiddenName']">
+                                                                Name cannot be Bob.
+                                                            </div>
+                                                        </div>                             
+
+                                                    </div>
+                                                </div>
+                                             
+                                                <div class="form-group row mb-3">
+                                                    <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 text-end lh-sm">Nombres*</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="participante.nombres" name="nombres" #nombres="ngModel" required>                        
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 text-end lh-sm">Apellidos*</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="participante.apellidos" name="apellidos" #apellidos="ngModel" required>  
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 text-end lh-sm">Participación</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="ASISTENTE/ORGANIZADOR/PONENTE/..." autocomplete="off" [disabled]="!btn" [(ngModel)]="participante.participacion" name="participacion" #participacion="ngModel">  
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row mb-3">
+                                                    <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 text-end lh-sm">Codigo*</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="participante.codigo" name="codigo" #codigo="ngModel" readonly>  
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                                      
+
+                                    <div class="w-100" style="height:12px;"></div>
+                                    <div class="msg-ajax-result"></div>
+
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button *ngIf="btn" type="submit" class="btn w-100 btn-success btn_modals" [disabled]="!modalForm.form.valid"><i class="far fa-lg fa-save"></i> Guardar</button>
+                                            <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
+                                           
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                                
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- MODAL ADD CSV -->
+<!-- MODAL ADD CSV -->
+<div class="modal fade bd-example-modal-sm" style="z-index: 5000;" id="modal-add-csv" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+
+            <div class="container-fluid modal-body" style="padding:15px;">
+                <div class="row justify-content-center"> 
+                    <div class="col-md-12">
+
+                                <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-times"></i></button>
+                                
+                                <form #modalFormCSV="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="importar(modalFormCSV)" novalidate="">
+                                    <h4 style="margin-bottom:18px;width:80%;">SUBIR GRUPO DE PARTICIPANTES</h4>
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
+                                        </div>
+                                    </nav>
+                                    <div class="row justify-content-center">   
+                                        <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
+                                            <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
+                                                <br>
+                                                <div class="row justify-content-center mb-2">
+                                                    <div class="col-12">
+                                                        <p class="text-muted">Guarde su archivo EXCEL en formtato CSV con la siguiente estructura y subalo aquí.</p>
+                                                        <table class="table table-sm table-bordered table-success">
+                                                            <thead>
+                                                              <tr class="table-dark">
+                                                                <th scope="col">NRO</th>
+                                                                <th scope="col">NOMBRES</th>
+                                                                <th scope="col">APELLIDOS</th>
+                                                                <th scope="col">PARTICIPACIÓN</th>
+                                                              
+                                                              </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                              <tr>    
+                                                                <td>Data 1</td>     
+                                                                <td>Data 1</td>       
+                                                                <td>Data 1</td>       
+                                                                <td>Data 1</td>       
+                                                                                                            
+                                                              </tr>
+                                                              <tr>
+                                                                <td>Data 2</td>     
+                                                                <td>Data 2</td>       
+                                                                <td>Data 2</td>       
+                                                                <td>Data 2</td>       
+                                                                                                             
+                                                              </tr>
+                                                              <tr>
+                                                                <td>...</td>   
+                                                                <td>...</td>    
+                                                                <td>...</td>    
+                                                                <td>...</td>    
+                                                                                                            
+                                                              </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-center">
+                                                    <div class="col-12 text-center">       
+                                                        <div class="form-group col-12 mb-2 text-center">
+                                                            <h5>Seleccione el documento a subir</h5>
+                                                            <div class="custom-file d-block">                                            
+                                                                <label class="upload-drop-zone w-100 float-left mb-1 p-2 area_upload" (click)="inputFILE.click()">
+                                                                    <span *ngIf="!fileExtension" style="line-height: 200px;">Click aquí</span>                  
+                                                                    <div *ngIf="fileExtension=='csv'" class="document_upload" (click)="selectedFile($event)">
+                                                                        <span style="color:rgb(39, 141, 36);">
+                                                                            <i class="fas fa-5x fa-file-csv"></i>
+                                                                        </span>
+                                                                        <br>
+                                                                        <span *ngIf="file" style="font-size: 0.9em; color:grey;">
+                                                                            {{file.name}}
+                                                                        </span> 
+                                                                        <br>
+                                                                        <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
+                                                                    </div>               
+                                                                    <div *ngIf="fileExtension=='doc' || fileExtension=='docx'" class="document_upload" (click)="selectedFile($event)">
+                                                                        <span style="color:rgb(28, 96, 224);">
+                                                                            <i class="fas fa-5x fa-file-word"></i>
+                                                                        </span>
+                                                                        <br>
+                                                                        <span *ngIf="file" style="font-size: 0.9em; color:grey;">
+                                                                            {{file.name}}
+                                                                        </span>
+                                                                
+                                                                        <br>
+                                                                        <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
+                                                                    </div>
+                                                                </label>
+                                                                <input type="file" id="input-file-modal" class="custom-file-input d-none" accept=".csv" (change)="seleccionFile($event)"  [disabled]="!btn" #inputFILE>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                      
+
+                                    <div class="w-100" style="height:12px;"></div>
+                                    <div class="msg-ajax-result"></div>
+
+
+                                    <div class="row justify-content-center">
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button *ngIf="btn" type="submit" class="btn w-100 btn-success btn_modals" [disabled]="!modalFormCSV.form.valid"><i class="far fa-lg fa-save"></i> Guardar</button>
+                                            <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
+                                           
+                                        </div>
+                                        <div class="col-sm-4 col-12 mb-2">
+                                            <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
+                                        </div>
+                                    </div>
+
+
+                                </form>
+                                
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Confirm-->
+<div class="modal fade" id="modal-confirm" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4 class="modal-title" id="exampleModalLabel">Confirmar accion</h4>
+            <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-lg fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                ¿Esta seguro que desea eliminar el elemento?
+            </div>
+            <div class="modal-footer p-1">
+                <div class="row w-100">
+                    <div class="col-sm-6">
+                        <button *ngIf="btn" type="button" class="btn w-100 btn-danger m-1" (click)='eliminar({})'>Si</button>
+                        <button *ngIf="!btn" type="button" class="btn w-100 btn-danger m-1" (click)='eliminar({})'  disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn w-100 btn-secondary m-1" (click)="closeConfirm()" [disabled]="!btn">No</button>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </div>
+</div>

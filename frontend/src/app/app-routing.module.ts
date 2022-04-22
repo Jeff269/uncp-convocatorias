@@ -10,6 +10,7 @@ import { AdminUsuariosComponent } from './admin/admin-usuarios/admin-usuarios.co
 import { AdminComponent } from './admin/admin.component';
 import { AuthAdminGuard } from './auth-admin.guard';
 import { AuthBlockGuard } from './auth-block.guard';
+import { AuthUserlogGuard } from './auth-userlog.guard';
 import { AuthGuard } from './auth.guard';
 import { IntranetLoginComponent } from './intranet-login/intranet-login.component';
 import { IntranetRegisterComponent } from './intranet-register/intranet-register.component';
@@ -68,11 +69,11 @@ const routes: Routes = [
         component: AdminConvocatoriasComponent
       },
       {
-        path: 'plazas',
+        path: 'convocatorias/:id',
         component: AdminPlazasComponent
       },
       {
-        path: 'postulantes',
+        path: 'convocatorias/:id/plaza/:id',
         component: AdminPostulantesComponent
       }
     ]
@@ -81,11 +82,13 @@ const routes: Routes = [
 
   {
     path: 'register',
-    component: IntranetRegisterComponent
+    component: IntranetRegisterComponent,
+    canLoad: [AuthUserlogGuard]
   },
   {
     path: 'login',
-    component: IntranetLoginComponent
+    component: IntranetLoginComponent,
+    canLoad: [AuthUserlogGuard]
   },
   {
     path: 'intranet', 

@@ -22,7 +22,7 @@ export class ParticipantesService {
     let params = new HttpParams();
     params = params.append('size', size);
     params = params.append('id', certificado.id);
-    return this.http.get<[]>(this.URI+'participantes/paginar.php',{params: params});
+    return this.http.get<[]>(this.URI+'plazas/paginar.php',{params: params});
   }
 
   getData(index, certificado){
@@ -32,7 +32,7 @@ export class ParticipantesService {
       params = params.append('offset', index.offset);
     }
     params = params.append('id', certificado.id);
-    return this.http.get<[]>(this.URI+'participantes/listar.php',{params: params});
+    return this.http.get<[]>(this.URI+'plazas/listar.php',{params: params});
   }
 
 
@@ -41,7 +41,7 @@ export class ParticipantesService {
     params = params.append('index', index);
     params = params.append('type', type);
     params = params.append('id', certificado.id);
-    return this.http.get<[]>(this.URI+'participantes/buscar.php',{params: params});
+    return this.http.get<[]>(this.URI+'plazas/buscar.php',{params: params});
   }
 
   postData(get_data: Participante, certificado){ 
@@ -49,7 +49,7 @@ export class ParticipantesService {
     form_data.append('authorization', this.getToken());
     form_data.append('data',JSON.stringify(get_data));
     form_data.append('id',certificado.id);
-    return this.http.post(this.URI+'participantes/registrar.php',form_data);
+    return this.http.post(this.URI+'plazas/registrar.php',form_data);
   }
 
   putData(get_data: Participante){
@@ -57,14 +57,14 @@ export class ParticipantesService {
     const form_data = new FormData();
     form_data.append('authorization', this.getToken());
     form_data.append('data',JSON.stringify(get_data));
-    return this.http.post(this.URI+'participantes/editar.php',form_data);
+    return this.http.post(this.URI+'plazas/editar.php',form_data);
   }
 
   deleteData(get_data: Participante){
     const form_data = new FormData();
     form_data.append('authorization', this.getToken());
     form_data.append('data',JSON.stringify(get_data));
-    return this.http.post(this.URI+'participantes/eliminar.php',form_data);
+    return this.http.post(this.URI+'plazas/eliminar.php',form_data);
   }
 
   postImport(file, certificado){ 
@@ -72,7 +72,7 @@ export class ParticipantesService {
     form_data.append('authorization', this.getToken());
     form_data.append('file', file);
     form_data.append('data',JSON.stringify(certificado));
-    return this.http.post<any>(this.URI+'participantes/importar.php',form_data);
+    return this.http.post<any>(this.URI+'plazas/importar.php',form_data);
   }
 
 }
