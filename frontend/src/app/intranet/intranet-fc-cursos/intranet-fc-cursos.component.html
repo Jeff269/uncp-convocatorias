@@ -1,38 +1,8 @@
-<div id="header-menu">
-  <div id="header" class="d-flex">
-    <img src="" alt="">
-    <h2>Convocatoria</h2>
-  </div>
-  <div id="menu" class="d-flex">
-    <div id="submenu" class="d-flex">
-      <a href="" class="menu-route text-decoration-none">
-        <i class="fa-solid fa-house-chimney circular-icon"></i>
-        <p>Inicio</p>
-      </a>
-      <a href="" class="menu-route route-selected text-decoration-none" >
-        <i class="fa-solid fa-file-signature circular-icon"></i>
-        <p>Ficha Curricular</p>
-      </a>
-      <a href="" class="menu-route text-decoration-none">
-        <i class="fa-solid fa-bullhorn circular-icon"></i>
-        <p>Convocatorias</p>
-      </a>
-    </div>
-    <div  class="d-flex">
-      <button id="user-info" class="d-flex">
-        <p>Antony Arias de la Cruz</p>
-        <i class="fa-solid fa-caret-down" style="color: #fff; margin: 10px"></i>
-        <i class="fa-solid fa-user circular-icon"></i>
-      </button>
-    </div>
-  </div>
-</div>
-
 <div id="contenido">
   <div>
     <div class="fc-menu d-flex justify-content-around">
       <div>
-        <a href="" class="fc-menu-route text-decoration-none">
+        <a href="/intranet/datospersonales" class="fc-menu-route text-decoration-none">
           <div class="ext-border">
             <i class="fa-solid fa-user fc-circular-icon"></i>
           </div>
@@ -40,7 +10,7 @@
         </a>
       </div>
       <div>
-        <a href="" class="fc-menu-route text-decoration-none">
+        <a href="/intranet/formacionprof" class="fc-menu-route text-decoration-none">
           <div class="ext-border">
             <i class="fa-solid fa-book fc-circular-icon"></i>
           </div>
@@ -48,7 +18,7 @@
         </a>
       </div>
       <div>
-        <a href="" class="fc-menu-route text-decoration-none">
+        <a href="/intranet/cursos" class="fc-menu-route text-decoration-none">
           <div class="ext-border">
             <i class="fa-solid fa-scroll fc-circular-icon"></i>
           </div>
@@ -56,7 +26,7 @@
         </a>
       </div>
       <div>
-        <a href="" class="fc-menu-route text-decoration-none">
+        <a href="/intranet/experiencia" class="fc-menu-route text-decoration-none">
           <div class="ext-border">
             <i class="fa-solid fa-briefcase fc-circular-icon"></i>
           </div>
@@ -64,7 +34,7 @@
         </a>
       </div>
       <div>
-        <a href="" class="fc-menu-route text-decoration-none">
+        <a href="/intranet/infoadd" class="fc-menu-route text-decoration-none">
           <div class="ext-border">
             <i class="fa-solid fa-info fc-circular-icon"></i>
           </div>
@@ -74,7 +44,7 @@
     </div>
     <hr>
     <div>
-      <form action="" method="post">
+      <form id="form-th" action="" method="post">
         <div class="d-flex">
           <div class="fc-input d-flex flex-column col-6">
             <label for="tipo">Tipo <b>*</b></label>
@@ -142,8 +112,10 @@
           <td>15/03/2018</td>
           <td>15/03/2022</td>
           <td>120 Horas</td>
-          <td class="d-flex">
-            Eliminar <i class="fa-solid fa-trash-can color-rojo"></i>
+          <td>
+            <button>
+              <i class="fa-solid fa-trash-can color-rojo"></i> Eliminar
+            </button>
           </td>
         </tr>
         </tbody>
