@@ -37,6 +37,7 @@ import { AdminPlazasComponent } from './admin/admin-plazas/admin-plazas.componen
 import { AdminPostulantesComponent } from './admin/admin-postulantes/admin-postulantes.component';
 import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dependencias.component';
 import { AdminPostulantesPlazaComponent } from './admin/admin-postulantes-plaza/admin-postulantes-plaza.component';
+import { AdminEvaluacionCurricularComponent } from './admin/admin-evaluacion-curricular/admin-evaluacion-curricular.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { AdminPostulantesPlazaComponent } from './admin/admin-postulantes-plaza/
     AdminPlazasComponent,
     AdminPostulantesComponent,
     AdminDependenciasComponent,
-    AdminPostulantesPlazaComponent
+    AdminPostulantesPlazaComponent,
+    AdminEvaluacionCurricularComponent
   ],
   imports: [
     CommonModule,

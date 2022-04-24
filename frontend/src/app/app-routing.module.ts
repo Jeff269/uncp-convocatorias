@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminConvocatoriasComponent } from './admin/admin-convocatorias/admin-convocatorias.component';
 import { AdminDependenciasComponent } from './admin/admin-dependencias/admin-dependencias.component';
+import { AdminEvaluacionCurricularComponent } from './admin/admin-evaluacion-curricular/admin-evaluacion-curricular.component';
 import { AdminFiltroComponent } from './admin/admin-filtro/admin-filtro.component';
 import { AdminPlazasComponent } from './admin/admin-plazas/admin-plazas.component';
 import { AdminPostulantesPlazaComponent } from './admin/admin-postulantes-plaza/admin-postulantes-plaza.component';
@@ -80,6 +81,10 @@ const routes: Routes = [
       {
         path: 'convocatorias/:id/plaza/:id',
         component: AdminPostulantesPlazaComponent
+      },
+      {
+        path: 'evaluacion',
+        component: AdminEvaluacionCurricularComponent
       }
     ]
   },
