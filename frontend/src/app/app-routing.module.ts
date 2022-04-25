@@ -29,11 +29,12 @@ import { IntranetUpdatepassComponent } from './intranet/intranet-updatepass/intr
 import { IntranetComponent } from './intranet/intranet.component';
 import { PublicComponent } from './public/public.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import {IntranetCorreoComponent} from "./intranet/intranet-correo/intranet-correo.component";
 
 
 const routes: Routes = [
   {
-    path: '', 
+    path: '',
     component: PublicComponent,
     children: [
       {
@@ -45,7 +46,7 @@ const routes: Routes = [
 
 
   {
-    path: 'admin', 
+    path: 'admin',
     component: AdminComponent,
     canActivate: [AuthAdminGuard],
     canActivateChild: [AuthAdminGuard],
@@ -88,7 +89,7 @@ const routes: Routes = [
       }
     ]
   },
- 
+
 
   {
     path: 'register',
@@ -101,7 +102,7 @@ const routes: Routes = [
     canLoad: [AuthUserlogGuard]
   },
   {
-    path: 'intranet', 
+    path: 'intranet',
     component: IntranetComponent,
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],
@@ -133,6 +134,10 @@ const routes: Routes = [
       {
         path: 'infoadd',
         component: IntranetFcInfoaddComponent
+      },
+      {
+        path: 'correo',
+        component: IntranetCorreoComponent
       },
       {
         path: 'convocatorias',
