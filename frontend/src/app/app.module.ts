@@ -40,14 +40,13 @@ import { AdminPostulantesPlazaComponent } from './admin/admin-postulantes-plaza/
 import { AdminEvaluacionCurricularComponent } from './admin/admin-evaluacion-curricular/admin-evaluacion-curricular.component';
 import { IntranetCorreoComponent } from './intranet/intranet-correo/intranet-correo.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     PublicComponent,
     IntranetComponent,
     AdminComponent,
-
+ 
     IntranetUpdatepassComponent,
     IntranetIndexComponent,
     IntranetFcDatospersComponent,
@@ -72,8 +71,7 @@ import { IntranetCorreoComponent } from './intranet/intranet-correo/intranet-cor
     AdminDependenciasComponent,
     AdminPostulantesPlazaComponent,
     AdminEvaluacionCurricularComponent,
-    IntranetCorreoComponent,
-
+    IntranetCorreoComponent
   ],
   imports: [
     CommonModule,

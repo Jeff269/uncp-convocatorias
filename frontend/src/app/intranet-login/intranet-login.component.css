@@ -27,8 +27,10 @@ html,body{
   flex-direction: column;
   justify-content: center;
 }
-.tcenter{
+.title-con{
   text-align: center;
+  margin-top: 30px;
+
 }
 .icon-container{
   position: relative;
@@ -49,6 +51,7 @@ html,body{
   background-color: #025F45;
   border: none;
   box-shadow: 0 3px 10px #50B793;
+  padding: 0;
 }
 
 .input-icon{
@@ -78,6 +81,8 @@ html,body{
 
 .soporte{
   display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .soporte div{
@@ -87,4 +92,9 @@ html,body{
 
 .soporte a{
   margin: 3px;
+}
+.support-icon{
+  color: #025F45;
+  border-left: 3px solid #025F45;
+  padding-left: 5px;
 }

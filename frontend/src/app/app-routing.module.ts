@@ -124,6 +124,10 @@ const routes: Routes = [
         component: IntranetFcFormprofComponent
       },
       {
+        path: 'correo',
+        component: IntranetCorreoComponent
+      },
+      {
         path: 'cursos',
         component: IntranetFcCursosComponent
       },
@@ -134,10 +138,6 @@ const routes: Routes = [
       {
         path: 'infoadd',
         component: IntranetFcInfoaddComponent
-      },
-      {
-        path: 'correo',
-        component: IntranetCorreoComponent
       },
       {
         path: 'convocatorias',
