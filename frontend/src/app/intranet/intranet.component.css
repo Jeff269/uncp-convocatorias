@@ -151,6 +151,7 @@ hr{
   padding-right: 10px;
   padding-left: 10px;
   padding-bottom: 15px;
+
 }
 
 .fc-input label{
@@ -382,4 +383,107 @@ tr{
   color: #fff;
   padding: 5px;
   border-radius: 50%;
+}
+
+#menu-desplegable ul {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+#menu-desplegable ul a {
+  display:block;
+  text-decoration:none;
+  font-size:15px;
+  padding:10px;
+  color: #6E7592;
+}
+
+#menu-desplegable ul li {
+  position:relative;
+  float:left;
+  margin:0;
+  padding:0;
+}
+
+#menu-desplegable ul ul {
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  padding:0;
+}
+
+#menu-desplegable ul ul li {
+  float:none;
+  width:250px;
+}
+
+#menu-desplegable ul ul a {
+  line-height:120%;
+  padding:10px 15px;
+}
+
+#menu-desplegable ul li:hover > ul {
+  display:block;
+}
+
+.h-gray:hover{
+  background-color: #FED303;
+}
+.desplegable{
+  border: 1px solid #025F45;
+  background-color: #fff;
+  box-shadow: 0 3px 3px #025F45;
+}
+
+#correo{
+  width: 80%;
+  box-shadow: 0 0 10px #ABB5BD;
+  border-radius: 15px;
+  padding: 30px;
+  border-bottom: 7px solid #025F45;
+}
+
+#correos div{
+  align-items: center;
+  padding: 0;
+}
+
+#correos label{
+  padding-top: 5px;
+  margin-right: 10px;
+}
+
+.office-link{
+  margin: 10px 20px;
+  padding: 5px 10px;
+}
+
+.links{
+  align-items: center;
+}
+
+.links p:nth-child(2){
+  background-color: #E7E6E6;
+  color: #2A4B9B;
+  height: 45px;
+  padding-top: 10px;
+}
+#less20{
+  padding: 0 5%;
+  font-size: 0.9em;
+}
+.remember{
+  font-weight: bold;
+  color: #025F45;
+  margin-left: 5px;
+}
+
+.parrafo{
+  text-align: justify;
+  color: #3C578C;
+}
+.parrafo li{
+  margin-bottom: 7px;
 }
