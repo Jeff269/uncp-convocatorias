@@ -30,6 +30,7 @@ import { IntranetComponent } from './intranet/intranet.component';
 import { PublicComponent } from './public/public.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import {IntranetCorreoComponent} from "./intranet/intranet-correo/intranet-correo.component";
+import {IntranetConvDetailComponent} from "./intranet/intranet-conv-detail/intranet-conv-detail.component";
 
 
 const routes: Routes = [
@@ -146,6 +147,10 @@ const routes: Routes = [
       {
         path: 'seguimiento',
         component: IntranetConvFollowComponent
+      },
+      {
+        path: 'detalles',
+        component: IntranetConvDetailComponent
       }
     ]
   },

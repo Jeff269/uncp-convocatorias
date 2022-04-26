@@ -1,7 +1,6 @@
 #header-menu{
   width: 100%;
   height: auto;
-  z-index: 2000;
 }
 #header{
   width: 100%;
@@ -101,7 +100,7 @@ button{
   padding-left: 10%;
   padding-right: 10%;
 }
-#contenido>div{
+#contenido>div,.caja-sombra{
   box-shadow: 0 0 10px #ABB5BD;
   border-radius: 0 0 15px 15px;
 }
@@ -435,6 +434,7 @@ tr{
   border: 1px solid #025F45;
   background-color: #fff;
   box-shadow: 0 3px 3px #025F45;
+  z-index: 99;
 }
 
 #correo{
@@ -479,11 +479,55 @@ tr{
   color: #025F45;
   margin-left: 5px;
 }
-
 .parrafo{
   text-align: justify;
   color: #3C578C;
 }
 .parrafo li{
   margin-bottom: 7px;
+}
+#search-button{
+  width: 250px;
+  padding-bottom: 3px;
+}
+
+#search-button input{
+  height: 35px;
+}
+.search-icon{
+  font-size: 0.5em;
+  background-color: #025F45;
+}
+
+.t-amarillo{
+  color: #FED303
+}
+.t-amarillo .fa-download{
+  margin-left: 5px;
+}
+.fases{
+  padding-top: 10px;
+}
+
+.modal-header h2{
+  width: 100%;
+  text-align: center;
+  color: #025F45;
+}
+
+.remember-container{
+  padding: 15px;
+  margin: 15px;
+  border-bottom: 4px solid #025F45;
+}
+
+.fc-data{
+  text-align: initial;
+  text-decoration: none;
+  color: #fff;
+  background-color: #025F45;
+}
+
+.fc-data p{
+  margin: 0;
 }
