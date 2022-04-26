@@ -8,7 +8,6 @@
           <i class="fa-solid fa-magnifying-glass input-icon search-icon"></i>
         </div>
       </div>
-
       <div id="resumen" class="d-flex justify-content-center">
         <table class="table-hover table-bordered tablas">
           <thead class="t-head">
@@ -37,7 +36,7 @@
                 <p class="button-link-action vigente" >Vigente</p>
               </td>
               <td>
-                <button style="width:140px;" type="button" class="button-link-action ver" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#modal-confirm"> Ver</button>
+                <button style="width:140px;" type="button" class="button-link-action ver" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#inscripcionModal"> Ver</button>
               </td>
             </tr>
             <tr>
@@ -81,11 +80,11 @@
   </div>
 
 
-<!-- Button trigger modal  id="modal-confirm" -->
+
 
 <!-- Modal -->
-<div class="modal fade" id="modal-confirm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
+<div class="modal fade" id="modal-confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="modal-title" id="exampleModalLabel">Datos del Postulante</h2>
@@ -93,42 +92,33 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true" style="font-size: 2em">&times;</span>
         </button>
+
       </div>
-      <div class="d-flex flex-column remember-container caja-sombra">
-        <div class="d-flex">
-          <i class="fa-solid fa-circle-exclamation icon-exclamation"></i>
-          <h4 class="remember">Recuerda que:</h4>
-        </div>
-        <li>
-          En cada convocatoria, solo se puede postular una sola vez; una vez enviada su postulación, esta no podrá ser editada o eliminada.
-        </li>
-        <li>
-          El postulante deberá haber rellenado debidamente toda la Ficha Curricular( Datos Personales, Formación
-          Académica, Cursos y/o Especializaciones, Experiencia Laboral e Información Laboral).
-        </li>
-      </div>
+
       <div class="modal-body">
+        <div class="fc-input d-flex flex-column col-12">
+          <label for="convo">Usted esta postulando a:</label>
+          <input type="text" name="convocatoria" id="convo" disabled value="CONVOCATORIA CAS N° 001-2022-UNCP">
+        </div>
+        <div class="fc-input d-flex flex-column col-12">
+          <label for="puesto">Al puesto de:</label>
+          <input type="text" name="convocatoria" id="puesto" disabled value="Asistente Administrativo y Logístico 1">
+        </div>
         <form action="">
-          <div class="fc-input d-flex flex-column col-12">
-            <label for="convo">Usted esta postulando a:</label>
-            <input type="text" name="convocatoria" id="convo" disabled value="CONVOCATORIA CAS N° 001-2022-UNCP">
-          </div>
-          <div class="fc-input d-flex flex-column col-12">
-            <label for="puesto">Al puesto de:</label>
-            <input type="text" name="convocatoria" id="puesto" disabled value="Asistente Administrativo y Logístico 1">
-          </div>
           <div class="fc-input d-flex flex-column col-12">
             <label for="doc_laboral">Adjuntar expediente bajo requisitor descritos en las bases de esta convocatoria</label>
             <input type="file" class="form-control" name="doc_laboral" id="doc_laboral"  placeholder="Ingrese Institución">
           </div>
-          <div id="accordion">
-            <div class="card">
-                <button class="card-header fc-data" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  <p>Revisar Ficha Curricular</p>
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed fc-data a" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Revisar Ficha Curricular
                 </button>
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  Ficha Churricular
                 </div>
               </div>
             </div>
@@ -138,10 +128,76 @@
           </div>
         </form>
       </div>
-
-
       <div class="modal-footer">
         <button type="button" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="inscripcionModal" tabindex="-1" aria-labelledby="inscripcionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="inscripcionModalLabel">Datos del Postulante</h2>
+        <button type="button" class='btn-cerrar' data-bs-dismiss="modal" aria-label="Close">
+          <i class="fa-solid fa-square-xmark"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex flex-column remember-container caja-sombra">
+          <div class="d-flex">
+            <i class="fa-solid fa-circle-exclamation icon-exclamation"></i>
+            <h4 class="remember">Recuerda que:</h4>
+          </div>
+          <li>
+            En cada convocatoria, solo se puede postular una sola vez; una vez enviada su postulación, esta no podrá ser editada o eliminada.
+          </li>
+          <li>
+            El postulante deberá haber rellenado debidamente toda la Ficha Curricular( Datos Personales, Formación
+            Académica, Cursos y/o Especializaciones, Experiencia Laboral e Información Laboral).
+          </li>
+        </div>
+        <div>
+          <div class="fc-input d-flex flex-column col-12">
+            <label for="convo">Usted esta postulando a:</label>
+            <input type="text" name="convocatoria" id="convo" disabled value="CONVOCATORIA CAS N° 001-2022-UNCP">
+          </div>
+          <div class="fc-input d-flex flex-column col-12">
+            <label for="puesto">Al puesto de:</label>
+            <input type="text" name="convocatoria" id="puesto" disabled value="Asistente Administrativo y Logístico 1">
+          </div>
+          <form action="">
+            <div class="fc-input d-flex flex-column col-12">
+              <label for="doc_laboral">Adjuntar expediente bajo requisitor descritos en las bases de esta convocatoria</label>
+              <input type="file" class="form-control" name="doc_laboral" id="doc_laboral"  placeholder="Ingrese Institución">
+            </div>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed fc-data a" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Revisar Ficha Curricular
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                    Ficha Churricular
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <input type="submit" value="Enviar mi postulación" class="input-submit">
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>

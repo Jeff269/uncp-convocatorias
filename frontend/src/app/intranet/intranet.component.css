@@ -531,3 +531,12 @@ tr{
 .fc-data p{
   margin: 0;
 }
+
+.btn-close{
+  padding: 0;
+}
+
+.btn-cerrar .fa-square-xmark{
+  color: #E11E1C;
+  font-size: 2em;
+}
