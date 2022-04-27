@@ -4,16 +4,13 @@
  }
 
 
-
-
- 
  /* layout.css Style */
  .upload-drop-zone {
     height: 200px;
     border-width: 2px;
     margin-bottom: 20px;
   }
-  
+
   /* skin.css Style*/
   .upload-drop-zone {
     color: #ccc;
@@ -30,16 +27,16 @@
 
 
   .area_upload{
-    overflow:hidden; 
-    line-height: normal; 
+    overflow:hidden;
+    line-height: normal;
     cursor: pointer;
   }
 
   .document_upload{
-    position: relative; 
-    float: left; 
-    text-align: center; 
-    padding: 3px; 
+    position: relative;
+    float: left;
+    text-align: center;
+    padding: 3px;
     cursor: default;
     width: 100%;
     top: 50%;

@@ -5,7 +5,7 @@
         <h3 class="fw-bold mt-2 mb-4">Administración de las Convocatorias</h3>
         <hr class="mb-2">
 
-        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#reqMinimosModal" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
         <!--<button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add-csv" (click)='resetForm(modalFormCSV)'><i class="fas fa-file-import"></i> Importar CSV</button>-->
 
         <form class="row mt-2" #searchForm="ngForm" (submit)="filtrar(search.value, search_type.value)">
@@ -40,7 +40,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-    
+
                             <ng-container *ngIf="ready">
                                 <tr class="align-middle" *ngFor="let data of certificados; let i = index" >
                                     <td class="text-center">{{i+1}}</td>
@@ -53,12 +53,14 @@
                                         <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" routerLink="/admin/convocatorias/{{data.id}}"><i class="fas fa-users"></i> Administrar</button>
                                     </td>
                                     <td class="text-center">
-                                        <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)='edit(data)'><i class="fas fa-edit"></i> Modificar</button>
+
+                                      <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" data-bs-toggle="modal" data-bs-target="#reqMinimosModal" (click)='edit(data)'><i class="fas fa-edit"></i> Modificar</button>
+                                      <!-- <button style="width:140px;" type="button" class="btn btn-sm btn-primary m-1" data-bs-toggle="modal" data-bs-target="#modal-add" (click)='edit(data)'><i class="fas fa-edit"></i> Modificar</button> -->
                                         <button style="width:140px;" type="button" class="btn btn-sm btn-danger m-1" data-bs-toggle="modal" data-bs-target="#modal-confirm" (click)='eliminar(data)'><i class="fas fa-trash"></i> Eliminar</button>
                                     </td>
                                 </tr>
                             </ng-container>
-            
+
                             <ng-container *ngIf="!ready">
                                 <tr>
                                     <td colspan="7" class="pt-3 pb-3">
@@ -72,7 +74,7 @@
                                     </td>
                                 </tr>
                             </ng-container>
-    
+
                             <ng-container *ngIf="ready && certificados.length==0">
                                 <tr>
                                     <td>-</td>
@@ -83,7 +85,7 @@
                                     <td class="text-center">-</td>
                                 </tr>
                             </ng-container>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -93,9 +95,9 @@
                       <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
                       </li>
-                      
+
                       <li *ngFor="let page of pages" class="page-item" [ngClass]="{'active': pageActive == page.pagina}" #elemPagination><a class="page-link" (click)="getData(page.pagina)" style="cursor:pointer;">{{page.pagina}}</a></li>
-    
+
                       <li class="page-item disabled">
                         <a class="page-link" href="#">Siguiente</a>
                       </li>
@@ -117,12 +119,12 @@
         <div class="modal-content">
 
             <div class="container-fluid modal-body" style="padding:15px;">
-                <div class="row justify-content-center"> 
+                <div class="row justify-content-center">
                     <div class="col-md-12">
 
                                 <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-times"></i></button>
-                                
-                                <form #modalForm="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="submit(modalForm)" novalidate=""> 
+
+                                <form #modalForm="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="submit(modalForm)" novalidate="">
                                     <h4 *ngIf="!certificado.id" style="margin-bottom:18px;width:80%;">REGISTRAR CERTIFICADO</h4>
                                     <h4 *ngIf="certificado.id" style="margin-bottom:18px;width:80%;">MODIFICAR CERTIFICADO</h4>
 
@@ -131,7 +133,7 @@
                                             <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
                                         </div>
                                     </nav>
-                                    <div class="row justify-content-center">   
+                                    <div class="row justify-content-center">
                                         <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
 
                                             <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -141,7 +143,7 @@
                                                     <div class="col-sm-9">
                                                         <textarea type="text" rows="4" class="form-control text-uppercase" [ngClass]="{'is-invalid': curso.invalid && (curso.dirty || curso.touched)}" placeholder="Nombre del curso/capacitación" [disabled]="!btn" [(ngModel)]="certificado.curso" name="curso" #curso="ngModel" required>
                                                         </textarea>
-                                                                    
+
                                                         <div *ngIf="curso.invalid && (curso.dirty || curso.touched)" class="invalid-feedback">
                                                             <div *ngIf="curso.errors?.['required']">
                                                                 Necesitas completar este campo.
@@ -152,7 +154,7 @@
                                                             <div *ngIf="curso.errors?.['forbiddenName']">
                                                                 Name cannot be Bob.
                                                             </div>
-                                                        </div>                              
+                                                        </div>
 
                                                     </div>
                                                 </div>
@@ -160,7 +162,7 @@
                                                 <div class="form-group row mb-3">
                                                     <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 lh-sm">Código de certificado*</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.codigo" name="codigo" #codigo="ngModel" required>                        
+                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.codigo" name="codigo" #codigo="ngModel" required>
                                                     </div>
                                                 </div>
 
@@ -168,14 +170,14 @@
                                                 <div class="form-group row mb-3">
                                                     <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 lh-sm">Carpeta del Repositorio*</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.carpeta" name="carpeta" #carpeta="ngModel" required>                        
+                                                        <input type="text" class="form-control form-control-sm text-uppercase" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.carpeta" name="carpeta" #carpeta="ngModel" required>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row mb-3">
                                                     <label for="inputNOM" class="col-sm-3 col-form-label pt-1 pb-1 lh-sm">Post ruta de archivo</label>
                                                     <div class="col-sm-9">
-                                                        <input type="text" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.post_ruta" name="post_ruta" #post_ruta="ngModel">                        
+                                                        <input type="text" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.post_ruta" name="post_ruta" #post_ruta="ngModel">
                                                     </div>
                                                 </div>
 
@@ -184,7 +186,7 @@
                                                         <div class="row">
                                                             <label for="inputNOM" class="col-12 col-form-label pt-1 pb-1 lh-sm">Fecha de Inicio</label>
                                                             <div class="col-sm-12">
-                                                                <input type="date" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.fecha_inicio" name="fecha_inicio" #fecha_inicio="ngModel">                        
+                                                                <input type="date" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.fecha_inicio" name="fecha_inicio" #fecha_inicio="ngModel">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -192,7 +194,7 @@
                                                         <div class="row">
                                                             <label for="inputNOM" class="col-12 col-form-label pt-1 pb-1 lh-sm">Fecha de Finalización</label>
                                                             <div class="col-sm-12">
-                                                                <input type="date" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.fecha_fin" name="fecha_fin" #fecha_fin="ngModel">                        
+                                                                <input type="date" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.fecha_fin" name="fecha_fin" #fecha_fin="ngModel">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -203,7 +205,7 @@
                                                         <div class="row">
                                                             <label for="inputNOM" class="col-12 col-form-label pt-1 pb-1 lh-sm">Horas lectivas</label>
                                                             <div class="col-sm-12">
-                                                                <input type="number" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.horas" name="horas" #horas="ngModel">                        
+                                                                <input type="number" class="form-control form-control-sm" placeholder="" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.horas" name="horas" #horas="ngModel">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -211,38 +213,32 @@
                                                         <div class="row">
                                                             <label for="inputNOM" class="col-12 col-form-label pt-1 pb-1 lh-sm">Año de emision*</label>
                                                             <div class="col-sm-12">
-                                                                <input type="number" class="form-control form-control-sm" placeholder="YYYY" min="2019" max="2100" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.year" name="year" #year="ngModel" required>                        
+                                                                <input type="number" class="form-control form-control-sm" placeholder="YYYY" min="2019" max="2100" autocomplete="off" [disabled]="!btn" [(ngModel)]="certificado.year" name="year" #year="ngModel" required>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
 
                                         </div>
                                     </div>
-                                                      
-
                                     <div class="w-100" style="height:15px;"></div>
                                     <div class="msg-ajax-result"></div>
-
-
                                     <div class="row justify-content-center">
                                         <div class="col-sm-4 col-12 mb-2">
                                             <button *ngIf="btn" type="submit" class="btn w-100 btn-success btn_modals" [disabled]="!modalForm.form.valid"><i class="far fa-lg fa-save"></i> Guardar</button>
                                             <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
-                                           
+
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2">
                                             <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
                                         </div>
                                     </div>
-
-
                                 </form>
-                                
+
                     </div>
                 </div>
             </div>
@@ -259,11 +255,11 @@
         <div class="modal-content">
 
             <div class="container-fluid modal-body" style="padding:15px;">
-                <div class="row justify-content-center"> 
+                <div class="row justify-content-center">
                     <div class="col-md-12">
 
                                 <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-times"></i></button>
-                                
+
                                 <form #modalFormCSV="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="importar(modalFormCSV)" novalidate="">
                                     <h4 style="margin-bottom:18px;width:80%;">SUBIR GRUPO DE CERTIFICADOS</h4>
                                     <nav>
@@ -271,7 +267,7 @@
                                             <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
                                         </div>
                                     </nav>
-                                    <div class="row justify-content-center">   
+                                    <div class="row justify-content-center">
                                         <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
                                             <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
                                                 <br>
@@ -289,38 +285,38 @@
                                                               </tr>
                                                             </thead>
                                                             <tbody>
-                                                              <tr>    
-                                                                <td>Facultad 1</td>      
-                                                                <td>Nombres 1</td>      
-                                                                <td>Temario 1</td>      
-                                                                <td>Participación 1</td>      
-                                                                <td>Código 1</td>                                                    
-                                                              </tr>
-                                                              <tr>    
-                                                                <td>Facultad 2</td>      
-                                                                <td>Nombres 2</td>      
-                                                                <td>Temario 2</td>      
-                                                                <td>Participación 2</td>      
-                                                                <td>Código 2</td>                                                    
+                                                              <tr>
+                                                                <td>Facultad 1</td>
+                                                                <td>Nombres 1</td>
+                                                                <td>Temario 1</td>
+                                                                <td>Participación 1</td>
+                                                                <td>Código 1</td>
                                                               </tr>
                                                               <tr>
-                                                                <td>...</td>   
-                                                                <td>...</td> 
-                                                                <td>...</td> 
-                                                                <td>...</td> 
-                                                                <td>...</td>                                                  
+                                                                <td>Facultad 2</td>
+                                                                <td>Nombres 2</td>
+                                                                <td>Temario 2</td>
+                                                                <td>Participación 2</td>
+                                                                <td>Código 2</td>
+                                                              </tr>
+                                                              <tr>
+                                                                <td>...</td>
+                                                                <td>...</td>
+                                                                <td>...</td>
+                                                                <td>...</td>
+                                                                <td>...</td>
                                                               </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">
-                                                    <div class="col-12 text-center">       
+                                                    <div class="col-12 text-center">
                                                         <div class="form-group col-12 mb-2 text-center">
                                                             <h5>Seleccione el documento a subir</h5>
-                                                            <div class="custom-file d-block">                                            
+                                                            <div class="custom-file d-block">
                                                                 <label class="upload-drop-zone w-100 float-left mb-1 p-2 area_upload" (click)="inputFILE.click()">
-                                                                    <span *ngIf="!fileExtension" style="line-height: 200px;">Click aquí</span>                  
+                                                                    <span *ngIf="!fileExtension" style="line-height: 200px;">Click aquí</span>
                                                                     <div *ngIf="fileExtension=='csv'" class="document_upload" (click)="selectedFile($event)">
                                                                         <span style="color:rgb(39, 141, 36);">
                                                                             <i class="fas fa-5x fa-file-csv"></i>
@@ -328,10 +324,10 @@
                                                                         <br>
                                                                         <span *ngIf="file" style="font-size: 0.9em; color:grey;">
                                                                             {{file.name}}
-                                                                        </span> 
+                                                                        </span>
                                                                         <br>
                                                                         <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
-                                                                    </div>               
+                                                                    </div>
                                                                     <div *ngIf="fileExtension=='doc' || fileExtension=='docx'" class="document_upload" (click)="selectedFile($event)">
                                                                         <span style="color:rgb(28, 96, 224);">
                                                                             <i class="fas fa-5x fa-file-word"></i>
@@ -340,7 +336,7 @@
                                                                         <span *ngIf="file" style="font-size: 0.9em; color:grey;">
                                                                             {{file.name}}
                                                                         </span>
-                                                                    
+
                                                                         <br>
                                                                         <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
                                                                     </div>
@@ -353,7 +349,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                                      
+
 
                                     <div class="w-100" style="height:12px;"></div>
                                     <div class="msg-ajax-result"></div>
@@ -365,7 +361,7 @@
                                             <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
-                                           
+
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2">
                                             <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
@@ -374,7 +370,7 @@
 
 
                                 </form>
-                                
+
                     </div>
                 </div>
             </div>
@@ -404,7 +400,7 @@
                     <div class="col-sm-6">
                         <button type="button" class="btn w-100 btn-secondary m-1" (click)="closeConfirm()" [disabled]="!btn">No</button>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -414,9 +410,358 @@
 
 
 
+<!-- MODAL REGISTRAR TABLA DE REQUISITOS MINIMOS -->
+<!-- MODAL REGISTRAR TABLA DE REQUISITOS MINIMOS -->
+<!-- MODAL REGISTRAR TABLA DE REQUISITOS MINIMOS -->
+
+<div class="modal fade" id="reqMinimosModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="reqMinimosModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="req_tecnico-tab" data-bs-toggle="tab" data-bs-target="#req_tecnico" type="button" role="tab" aria-controls="tecnico" aria-selected="false" style="color: #025F45; font-weight: bold">Técnico</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="req_profesional-tab" data-bs-toggle="tab" data-bs-target="#req_profesional" type="button" role="tab" aria-controls="profesional" aria-selected="false" style="color: #025F45; font-weight: bold">Profesional</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="req_auxiliar-tab" data-bs-toggle="tab" data-bs-target="#req_auxiliar" type="button" role="tab" aria-controls="auxiliar" aria-selected="false" style="color: #025F45; font-weight: bold">Auxiliar</button>
+          </li>
+        </ul>
+        <div class="tab-content px-4 pt-3" id="myTabContent">
+          <div class="tab-pane fade show active" id="req_tecnico" role="tabpanel" aria-labelledby="home-tab">
+            <form action="">
+              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
+                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
+                <div class="col-6">
+                  <input type="text" name="" class="form-control" id="" value="Técnico" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico <br> y/o nivel de estudios</label>
+                <div class="col-6">
+                  <select name="" id="" class="form-select">
+                    <option value="Egresado">Egresado</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia General</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia Específica</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-6">
+                  <textarea name="" id="" class="form-control">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="req_profesional" role="tabpanel" aria-labelledby="profile-tab">
+            <form action="">
+              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
+                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
+                <div class="col-6">
+                  <input type="text" name="" class="form-control" id="" value="Profesional" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-4">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-3">
+                  <select name="" id="" class="form-select">
+                    <option value="Egresado">Egresado</option>
+                  </select>
+                </div>
+                <div class="col-1"></div>
+                <label for="" class="col-2">Título Profesional</label>
+                <div class="col-2">
+                  <select name="" id="" class="form-select">
+                    <option value="si">Sí</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia General</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia Específica</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-6">
+                  <textarea name="" id="" class="form-control">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="req_auxiliar" role="tabpanel" aria-labelledby="contact-tab">
+            <form action="">
+              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
+                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
+                <div class="col-6">
+                  <input type="text" name="" class="form-control" id="" value="Auxiliar" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico <br> y/o nivel de estudios</label>
+                <div class="col-6">
+                  <select name="" id="" class="form-select">
+                    <option value="secundaria_completa">Secundaria Completa</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia General</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia Específica</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-6">
+                  <textarea name="" id="" class="form-control">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- MODAL REGISTRAR TABLA DE CALIFICACION -->
 <!-- MODAL REGISTRAR TABLA DE CALIFICACION -->
 <!-- MODAL REGISTRAR TABLA DE CALIFICACION -->
-<!-- MODAL REGISTRAR TABLA DE CALIFICACION -->
-<!-- MODAL REGISTRAR TABLA DE CALIFICACION -->
-<!-- MODAL REGISTRAR TABLA DE CALIFICACION -->
+
+
+<div class="modal fade" id="calificacionModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="calificacionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <ul class="nav nav-tabs" id="myTabCalificacion" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="req_tecnico-tab" data-bs-toggle="tab" data-bs-target="#req_tecnico" type="button" role="tab" aria-controls="tecnico" aria-selected="false" style="color: #025F45; font-weight: bold">Técnico</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="req_profesional-tab" data-bs-toggle="tab" data-bs-target="#req_profesional" type="button" role="tab" aria-controls="profesional" aria-selected="false" style="color: #025F45; font-weight: bold">Profesional</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="req_auxiliar-tab" data-bs-toggle="tab" data-bs-target="#req_auxiliar" type="button" role="tab" aria-controls="auxiliar" aria-selected="false" style="color: #025F45; font-weight: bold">Auxiliar</button>
+          </li>
+        </ul>
+        <div class="tab-content px-4 pt-3" id="myTabContent">
+          <div class="tab-pane fade show active" id="req_tecnico" role="tabpanel" aria-labelledby="home-tab">
+            <form action="">
+              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
+                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
+                <div class="col-6">
+                  <input type="text" name="" class="form-control" id="" value="Técnico" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico <br> y/o nivel de estudios</label>
+                <div class="col-6">
+                  <select name="" id="" class="form-select">
+                    <option value="Egresado">Egresado</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia General</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia Específica</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-6">
+                  <textarea name="" id="" class="form-control">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="req_profesional" role="tabpanel" aria-labelledby="profile-tab">
+            <form action="">
+              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
+                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
+                <div class="col-6">
+                  <input type="text" name="" class="form-control" id="" value="Profesional" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-4">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-3">
+                  <select name="" id="" class="form-select">
+                    <option value="Egresado">Egresado</option>
+                  </select>
+                </div>
+                <div class="col-1"></div>
+                <label for="" class="col-2">Título Profesional</label>
+                <div class="col-2">
+                  <select name="" id="" class="form-select">
+                    <option value="si">Sí</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia General</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia Específica</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-6">
+                  <textarea name="" id="" class="form-control">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="req_auxiliar" role="tabpanel" aria-labelledby="contact-tab">
+            <form action="">
+              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
+                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
+                <div class="col-6">
+                  <input type="text" name="" class="form-control" id="" value="Auxiliar" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico <br> y/o nivel de estudios</label>
+                <div class="col-6">
+                  <select name="" id="" class="form-select">
+                    <option value="secundaria_completa">Secundaria Completa</option>
+                  </select>
+                </div>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia General</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Experiencia Específica</label>
+                <div class="col-2">
+                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+                </div>
+                <p class="col-3">meses</p>
+              </div>
+
+              <div class="d-flex m-1 p-2" style="width: 100%">
+                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
+                <div class="col-6">
+                  <textarea name="" id="" class="form-control">
+                  </textarea>
+                </div>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
