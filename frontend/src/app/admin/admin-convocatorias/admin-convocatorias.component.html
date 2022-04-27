@@ -5,7 +5,7 @@
         <h3 class="fw-bold mt-2 mb-4">Administración de las Convocatorias</h3>
         <hr class="mb-2">
 
-        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#reqMinimosModal" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#calificacionModal" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
         <!--<button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add-csv" (click)='resetForm(modalFormCSV)'><i class="fas fa-file-import"></i> Importar CSV</button>-->
 
         <form class="row mt-2" #searchForm="ngForm" (submit)="filtrar(search.value, search_type.value)">
@@ -37,6 +37,7 @@
                                 <th scope="col" class="text-center">CARPETA</th>
                                 <th scope="col" class="text-center">PARTICIPANTES</th>
                                 <th scope="col" class="text-center">OPERACIONES</th>
+                                
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -594,168 +595,346 @@
 
 
 <div class="modal fade" id="calificacionModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="calificacionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-body" >
-        <ul class="nav nav-tabs" id="myTabCalificacion" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="req_tecnico-tab" data-bs-toggle="tab" data-bs-target="#req_tecnico" type="button" role="tab" aria-controls="tecnico" aria-selected="false" style="color: #025F45; font-weight: bold">Técnico</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="req_profesional-tab" data-bs-toggle="tab" data-bs-target="#req_profesional" type="button" role="tab" aria-controls="profesional" aria-selected="false" style="color: #025F45; font-weight: bold">Profesional</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link" id="req_auxiliar-tab" data-bs-toggle="tab" data-bs-target="#req_auxiliar" type="button" role="tab" aria-controls="auxiliar" aria-selected="false" style="color: #025F45; font-weight: bold">Auxiliar</button>
-          </li>
-        </ul>
+        <div class="d-flex">
+          <ul class="nav nav-tabs col-11" id="myTabCalificacion" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="eva_curricular_profesional-tab" data-bs-toggle="tab" data-bs-target="#eva_curricular_profesional" type="button" role="tab" aria-controls="profesional" aria-selected="false" style="color: #025F45; font-weight: bold">Profesional</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="eva_curricular_tecnico-tab" data-bs-toggle="tab" data-bs-target="#eva_curricular_tecnico" type="button" role="tab" aria-controls="tecnico" aria-selected="false" style="color: #025F45; font-weight: bold">Técnico</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="eva_curricular_auxiliar-tab" data-bs-toggle="tab" data-bs-target="#eva_curricular_auxiliar" type="button" role="tab" aria-controls="auxiliar" aria-selected="false" style="color: #025F45; font-weight: bold">Auxiliar</button>
+            </li>
+          </ul>
+          <button type="button" class='btn-cerrar col-1' data-bs-dismiss="modal" aria-label="Close" style="border: none; background: none;">
+            <i class="fa-solid fa-square-xmark" style="color: #E11E1C; font-size: 1.3em;"></i>
+          </button>
+        </div>
+        
+        
         <div class="tab-content px-4 pt-3" id="myTabContent">
-          <div class="tab-pane fade show active" id="req_tecnico" role="tabpanel" aria-labelledby="home-tab">
+          <div class="tab-pane fade show active" id="eva_curricular_profesional" role="tabpanel" aria-labelledby="home-tab">
             <form action="">
-              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
-                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
-                <div class="col-6">
-                  <input type="text" name="" class="form-control" id="" value="Técnico" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+              <div>
+                <h4 class="text-center" style="color: #025F45;">Formación Académica</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2 mb-2">
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Título Profesional:</p>
+                        <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Grado de Bachiller:</p>
+                        <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Grado Académico de Maestro o Doctor:</p>
+                        <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>              
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
                 </div>
               </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Formación Académica, grado académico <br> y/o nivel de estudios</label>
-                <div class="col-6">
-                  <select name="" id="" class="form-select">
-                    <option value="Egresado">Egresado</option>
-                  </select>
+              <div>
+                <h4 class="text-center" style="color: #025F45;margin: 0;">Experiencia Laboral</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2">
+                      <legend  class="float-none w-auto">Específica</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">1 año de experiencia específica:</p>
+                        <input type="number" class="col-2" name="" id="" value="6" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">2 años de experiencia específica:</p>
+                        <input type="number" class="col-2" name="" id="" value="12" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8" style="color: #0000ff;">Permitir calificación en decimal</p>
+                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked style="width: 25px;height: 25px;background-color: #50B793;">
+                      </div>
+                    </fieldset>
+                    <fieldset class="border border-1 border-secondary p-2">
+                      <legend  class="float-none w-auto">General</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">1 año de experiencia general:</p>
+                        <input type="number" class="col-2" name="" id="" value="6" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">2 años de experiencia general:</p>
+                        <input type="number" class="col-2" name="" id="" value="12" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8" style="color: #0000ff;">Permitir calificación en decimal</p>
+                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked style="width: 25px;height: 25px;background-color: #50B793;">
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
                 </div>
               </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Experiencia General</label>
-                <div class="col-2">
-                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+              <div>
+                <h4 class="text-center" style="color: #025F45; margin-top: 15px;">Cursos y Capacitaciones</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2 mb-4">
+                      <legend  class="float-none w-auto">Cursos</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Mayor a 10 horas:</p>
+                        <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Número máximo de cursos:</p>
+                        <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>            
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
                 </div>
-                <p class="col-3">meses</p>
               </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Experiencia Específica</label>
-                <div class="col-2">
-                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
-                </div>
-                <p class="col-3">meses</p>
-              </div>
-
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
-                <div class="col-6">
-                  <textarea name="" id="" class="form-control">
-                  </textarea>
-                </div>
+              <div class="d-flex justify-content-center text-center col-12" style="align-items: center;">
+                <p style="color: #025F45;margin: 0;"><b>Sub Total</b></p>
+                <h2 style="color: #FED303;margin: 0;">30</h2>
               </div>
               <div class="row w-100 px-5">
                 <div class="col-sm-6">
                   <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
                 </div>
                 <div class="col-sm-6">
-                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+          <div class="tab-pane fade" id="eva_curricular_tecnico" role="tabpanel" aria-labelledby="profile-tab">
+            <form action="">
+              <div>
+                <h4 class="text-center" style="color: #025F45;">Formación Académica</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2 mb-2">
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Título de Instituto Superior Tecnológico
+                          o Bachiller universitario de la carrera
+                          o afines:</p>
+                        <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>          
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-center" style="color: #025F45;margin: 0;">Experiencia Laboral</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2">
+                      <legend  class="float-none w-auto">Específica</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">1 año de experiencia específica:</p>
+                        <input type="number" class="col-2" name="" id="" value="6" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">2 años de experiencia específica:</p>
+                        <input type="number" class="col-2" name="" id="" value="12" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8" style="color: #0000ff;">Permitir calificación en decimal</p>
+                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked style="width: 25px;height: 25px;background-color: #50B793;">
+                      </div>
+                    </fieldset>
+                    <fieldset class="border border-1 border-secondary p-2">
+                      <legend  class="float-none w-auto">General</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">1 año de experiencia general:</p>
+                        <input type="number" class="col-2" name="" id="" value="6" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">2 años de experiencia general:</p>
+                        <input type="number" class="col-2" name="" id="" value="12" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8" style="color: #0000ff;">Permitir calificación en decimal</p>
+                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked style="width: 25px;height: 25px;background-color: #50B793;">
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h4 class="text-center" style="color: #025F45; margin-top: 15px;">Cursos y Capacitaciones</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2 mb-4">
+                      <legend  class="float-none w-auto">Cursos</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Mayor a 10 horas:</p>
+                        <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Número máximo de cursos:</p>
+                        <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>            
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex justify-content-center text-center col-12" style="align-items: center;">
+                <p style="color: #025F45;margin: 0;"><b>Sub Total</b></p>
+                <h2 style="color: #FED303;margin: 0;">30</h2>
+              </div>
+              <div class="row w-100 px-5">
+                <div class="col-sm-6">
+                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
+                </div>
+                <div class="col-sm-6">
+                  <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
                 </div>
               </div>
             </form>
           </div>
-          <div class="tab-pane fade" id="req_profesional" role="tabpanel" aria-labelledby="profile-tab">
+          <div class="tab-pane fade" id="eva_curricular_auxiliar" role="tabpanel" aria-labelledby="contact-tab">
             <form action="">
-              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
-                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
-                <div class="col-6">
-                  <input type="text" name="" class="form-control" id="" value="Profesional" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
+              <div>
+                <h4 class="text-center" style="color: #025F45;">Formación Académica</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2 mb-2">
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Estudios de Secundaria completa:</p>
+                        <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>           
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
                 </div>
               </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-4">Formación Académica, grado académico y/o nivel de estudios</label>
-                <div class="col-3">
-                  <select name="" id="" class="form-select">
-                    <option value="Egresado">Egresado</option>
-                  </select>
-                </div>
-                <div class="col-1"></div>
-                <label for="" class="col-2">Título Profesional</label>
-                <div class="col-2">
-                  <select name="" id="" class="form-select">
-                    <option value="si">Sí</option>
-                  </select>
+              <div>
+                <h4 class="text-center" style="color: #025F45;margin: 0;">Experiencia Laboral</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2">
+                      <legend  class="float-none w-auto">Específica</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">1 año de experiencia específica:</p>
+                        <input type="number" class="col-2" name="" id="" value="6" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">2 años de experiencia específica:</p>
+                        <input type="number" class="col-2" name="" id="" value="12" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8" style="color: #0000ff;">Permitir calificación en decimal</p>
+                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked style="width: 25px;height: 25px;background-color: #50B793;">
+                      </div>
+                    </fieldset>
+                    <fieldset class="border border-1 border-secondary p-2">
+                      <legend  class="float-none w-auto">General</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">1 año de experiencia general:</p>
+                        <input type="number" class="col-2" name="" id="" value="6" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">2 años de experiencia general:</p>
+                        <input type="number" class="col-2" name="" id="" value="12" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8" style="color: #0000ff;">Permitir calificación en decimal</p>
+                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked style="width: 25px;height: 25px;background-color: #50B793;">
+                      </div>
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
                 </div>
               </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Experiencia General</label>
-                <div class="col-2">
-                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
+              <div>
+                <h4 class="text-center" style="color: #025F45; margin-top: 15px;">Cursos y Capacitaciones</h4>
+                <div class="d-flex" style="width: 100%;">
+                  <div class="w-70 col-9">
+                    <fieldset class="border border-1 border-secondary p-2 mb-4">
+                      <legend  class="float-none w-auto">Cursos</legend>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Mayor a 10 horas:</p>
+                        <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>
+                      <div class="d-flex m-2" style="width: 100%;">
+                        <p class="col-8">Número máximo de cursos:</p>
+                        <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
+                        <p class="col-2">Puntos</p>
+                      </div>            
+                    </fieldset>
+                  </div>
+                  <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
+                    <p style="color: #025F45;"><b>Sub Total</b></p>
+                    <h2 style="color: #FED303;">30</h2>
+                  </div>
                 </div>
-                <p class="col-3">meses</p>
               </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Experiencia Específica</label>
-                <div class="col-2">
-                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
-                </div>
-                <p class="col-3">meses</p>
-              </div>
-
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
-                <div class="col-6">
-                  <textarea name="" id="" class="form-control">
-                  </textarea>
-                </div>
+              <div class="d-flex justify-content-center text-center col-12" style="align-items: center;">
+                <p style="color: #025F45;margin: 0;"><b>Sub Total</b></p>
+                <h2 style="color: #FED303;margin: 0;">30</h2>
               </div>
               <div class="row w-100 px-5">
                 <div class="col-sm-6">
                   <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
                 </div>
                 <div class="col-sm-6">
-                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
-                </div>
-              </div>
-            </form>
-          </div>
-          <div class="tab-pane fade" id="req_auxiliar" role="tabpanel" aria-labelledby="contact-tab">
-            <form action="">
-              <div class="d-flex m-1 p-2" style="width: 100%; background-color: #50B793">
-                <label for="" class="col-6" style="color: #fff">Perfil de Postulante</label>
-                <div class="col-6">
-                  <input type="text" name="" class="form-control" id="" value="Auxiliar" disabled style="border: 1px solid #fff; color: #fff; background-color:#50B793 ">
-                </div>
-              </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Formación Académica, grado académico <br> y/o nivel de estudios</label>
-                <div class="col-6">
-                  <select name="" id="" class="form-select">
-                    <option value="secundaria_completa">Secundaria Completa</option>
-                  </select>
-                </div>
-              </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Experiencia General</label>
-                <div class="col-2">
-                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
-                </div>
-                <p class="col-3">meses</p>
-              </div>
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Experiencia Específica</label>
-                <div class="col-2">
-                  <input class="form-control text-center" type="number" name="" id="" [defaultValue]="0">
-                </div>
-                <p class="col-3">meses</p>
-              </div>
-
-              <div class="d-flex m-1 p-2" style="width: 100%">
-                <label for="" class="col-6">Formación Académica, grado académico y/o nivel de estudios</label>
-                <div class="col-6">
-                  <textarea name="" id="" class="form-control">
-                  </textarea>
-                </div>
-              </div>
-              <div class="row w-100 px-5">
-                <div class="col-sm-6">
-                  <button *ngIf="btn" type="button" class="btn w-100 btn-success m-1">Guardar</button>
-                </div>
-                <div class="col-sm-6">
-                  <button type="button" class="btn btn-cerrar w-100 btn-warning m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
+                  <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cancelar</button>
                 </div>
               </div>
             </form>

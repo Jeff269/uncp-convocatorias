@@ -14,6 +14,7 @@
                     <option value="nombre" selected>Nombre</option>
                 </select>
             </div>
+
             <div class="col-md-6 col-sm-6 mb-2">
                 <input type="text" class="form-control" placeholder="Buscar Dependencia" aria-label="Search" #search (keyup)="filtrar(search.value, search_type.value);">
             </div>
@@ -34,7 +35,7 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white">
-    
+
                             <ng-container *ngIf="ready">
                                 <tr class="align-middle" *ngFor="let data of dependencias; let i = index" >
                                     <td class="text-center">{{(pageActive-1)*pageSize+i+1}}</td>
@@ -45,7 +46,7 @@
                                     </td>
                                 </tr>
                             </ng-container>
-            
+
                             <ng-container *ngIf="!ready">
                                 <tr>
                                     <td colspan="7" class="pt-3 pb-3">
@@ -59,7 +60,7 @@
                                     </td>
                                 </tr>
                             </ng-container>
-    
+
                             <ng-container *ngIf="ready && dependencias.length==0">
                                 <tr>
                                     <td>-</td>
@@ -67,7 +68,7 @@
                                     <td>-</td>
                                 </tr>
                             </ng-container>
-                            
+
                         </tbody>
                     </table>
                 </div>
@@ -77,9 +78,9 @@
                       <li class="page-item disabled">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
                       </li>
-                      
+
                       <li *ngFor="let page of pages" class="page-item" [ngClass]="{'active': pageActive == page.pagina}" #elemPagination><a class="page-link" (click)="getDependencias(page.pagina)" style="cursor:pointer;">{{page.pagina}}</a></li>
-    
+
                       <li class="page-item disabled">
                         <a class="page-link" href="#">Siguiente</a>
                       </li>
@@ -101,12 +102,12 @@
         <div class="modal-content">
 
             <div class="container-fluid modal-body" style="padding:15px;">
-                <div class="row justify-content-center"> 
+                <div class="row justify-content-center">
                     <div class="col-md-12">
 
                                 <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-times"></i></button>
-                                
-                                <form #modalForm="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="submit(modalForm)" novalidate=""> 
+
+                                <form #modalForm="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="submit(modalForm)" novalidate="">
                                     <h4 *ngIf="!dependencia.id" style="margin-bottom:18px;width:80%;">REGISTRAR DEPENDENCIA</h4>
                                     <h4 *ngIf="dependencia.id" style="margin-bottom:18px;width:80%;">MODIFICAR DEPENDENCIA</h4>
 
@@ -115,7 +116,7 @@
                                             <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
                                         </div>
                                     </nav>
-                                    <div class="row justify-content-center">   
+                                    <div class="row justify-content-center">
                                         <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
 
                                             <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
@@ -124,7 +125,7 @@
                                                     <label for="inputNOM" class="col-sm-3 col-form-label">Nombre*</label>
                                                     <div class="col-sm-9">
                                                         <input type="text" class="form-control" autocomplete="off" [ngClass]="{'is-invalid': nombre.invalid && (nombre.dirty || nombre.touched)}" placeholder="Nombre de la dependencia" [disabled]="!btn" [(ngModel)]="dependencia.nombre" name="nombre" #nombre="ngModel" required>
-                                                                    
+
                                                         <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="invalid-feedback">
                                                             <div *ngIf="nombre.errors?.['required']">
                                                                 Necesitas completar este campo.
@@ -135,7 +136,7 @@
                                                             <div *ngIf="nombre.errors?.['forbiddenName']">
                                                                 Name cannot be Bob.
                                                             </div>
-                                                        </div>                                
+                                                        </div>
 
                                                     </div>
                                                 </div>
@@ -143,7 +144,7 @@
 
                                         </div>
                                     </div>
-                                                      
+
 
                                     <div class="w-100" style="height:12px;"></div>
                                     <div class="msg-ajax-result"></div>
@@ -155,7 +156,7 @@
                                             <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
-                                           
+
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2">
                                             <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalForm)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
@@ -164,7 +165,7 @@
 
 
                                 </form>
-                                
+
                     </div>
                 </div>
             </div>
@@ -181,11 +182,11 @@
         <div class="modal-content">
 
             <div class="container-fluid modal-body" style="padding:15px;">
-                <div class="row justify-content-center"> 
+                <div class="row justify-content-center">
                     <div class="col-md-12">
 
                                 <button type="button" class="btn btn-danger" style="position:absolute;right:13px;padding:6px 15px;" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-times"></i></button>
-                                
+
                                 <form #modalFormCSV="ngForm" class="formulario-modal" enctype="multipart/form-data" (submit)="importar(modalFormCSV)" novalidate="">
                                     <h4 style="margin-bottom:18px;width:80%;">SUBIR GRUPO DE DEPENDENCIAS</h4>
                                     <nav>
@@ -193,7 +194,7 @@
                                             <a class="nav-item nav-link active disabled" id="nav-general-tab" data-toggle="tab" href="#nav-general" role="tab" aria-controls="nav-general" aria-selected="true">Datos</a>
                                         </div>
                                     </nav>
-                                    <div class="row justify-content-center">   
+                                    <div class="row justify-content-center">
                                         <div class="tab-content row justify-content-center col-12" id="nav-tabContent">
                                             <div class="col-md-9 col-12 tab-pane fade show active" id="nav-general" role="tabpanel" aria-labelledby="nav-general-tab">
                                                 <br>
@@ -207,26 +208,26 @@
                                                               </tr>
                                                             </thead>
                                                             <tbody>
-                                                              <tr>    
-                                                                <td>Nombre 1</td>                                                    
+                                                              <tr>
+                                                                <td>Nombre 1</td>
                                                               </tr>
                                                               <tr>
-                                                                <td>Nombre 2</td>                                                   
+                                                                <td>Nombre 2</td>
                                                               </tr>
                                                               <tr>
-                                                                <td>...</td>                                                    
+                                                                <td>...</td>
                                                               </tr>
                                                             </tbody>
                                                         </table>
                                                     </div>
                                                 </div>
                                                 <div class="row justify-content-center">
-                                                    <div class="col-12 text-center">       
+                                                    <div class="col-12 text-center">
                                                         <div class="form-group col-12 mb-2 text-center">
                                                             <h5>Seleccione el documento a subir</h5>
-                                                            <div class="custom-file d-block">                                            
+                                                            <div class="custom-file d-block">
                                                                 <label class="upload-drop-zone w-100 float-left mb-1 p-2 area_upload" (click)="inputFILE.click()">
-                                                                    <span *ngIf="!fileExtension" style="line-height: 200px;">Click aquí</span>                  
+                                                                    <span *ngIf="!fileExtension" style="line-height: 200px;">Click aquí</span>
                                                                     <div *ngIf="fileExtension=='csv'" class="document_upload" (click)="selectedFile($event)">
                                                                         <span style="color:rgb(39, 141, 36);">
                                                                             <i class="fas fa-5x fa-file-csv"></i>
@@ -234,10 +235,10 @@
                                                                         <br>
                                                                         <span *ngIf="file" style="font-size: 0.9em; color:grey;">
                                                                             {{file.name}}
-                                                                        </span> 
+                                                                        </span>
                                                                         <br>
                                                                         <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
-                                                                    </div>               
+                                                                    </div>
                                                                     <div *ngIf="fileExtension=='doc' || fileExtension=='docx'" class="document_upload" (click)="selectedFile($event)">
                                                                         <span style="color:rgb(28, 96, 224);">
                                                                             <i class="fas fa-5x fa-file-word"></i>
@@ -246,7 +247,7 @@
                                                                         <span *ngIf="file" style="font-size: 0.9em; color:grey;">
                                                                             {{file.name}}
                                                                         </span>
-                                                                
+
                                                                         <br>
                                                                         <button class="mt-1" [disabled]="!btn" (click)="eliminarFile($event)">Eliminar</button>
                                                                     </div>
@@ -259,7 +260,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                                      
+
 
                                     <div class="w-100" style="height:12px;"></div>
                                     <div class="msg-ajax-result"></div>
@@ -271,7 +272,7 @@
                                             <button *ngIf="!btn" type="button" class="btn w-100 btn-success btn_modals" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Cargando</button>
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2 modal-btn-cont d-none">
-                                           
+
                                         </div>
                                         <div class="col-sm-4 col-12 mb-2">
                                             <button type="button" class="btn w-100 btn-warning btn_modals" (click)="closeForm(modalFormCSV)"><i class="fas fa-lg fa-ban"></i> Cancelar</button>
@@ -280,7 +281,7 @@
 
 
                                 </form>
-                                
+
                     </div>
                 </div>
             </div>
@@ -310,7 +311,7 @@
                     <div class="col-sm-6">
                         <button type="button" class="btn w-100 btn-secondary m-1" (click)="closeConfirm()" [disabled]="!btn">No</button>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>
