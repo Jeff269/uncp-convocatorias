@@ -42,3 +42,170 @@
     top: 50%;
     transform: translateY(-50%);
   }
+
+
+#form-th{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.fc-input{
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 15px;
+
+}
+
+.fc-input label{
+  padding-bottom: 5px;
+}
+
+.fc-input input[type = file]{
+  padding-top: 3px;
+}
+
+.fc-input input{
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 25px;
+  border: 2px solid #ABB5BD;
+  height: 35px;
+}
+
+
+
+.fc-input b{
+  color: #E62248;
+}
+
+
+
+#resumen{
+  padding: 15px;
+  width: 100%;
+}
+
+#resumen h4{
+  color: #50B793;
+  padding-left: 20px;
+}
+
+#resumen table{
+  width: 100%;
+  text-align: center;
+  font-size: 0.8em;
+  border: 1px solid #ABB5BD;
+}
+
+
+.color-rojo{
+  padding-top: 4px;
+  color: #E62248;
+  font-size: 1.2em;
+}
+
+.delete-button{
+  border: none;
+}
+
+.message-blue p{
+  color: blue !important;
+}
+
+.message-blue input[type = checkbox]{
+  width: 100px;
+}
+
+.t-head{
+  background-color: #025F45;
+  color: #fff;
+}
+
+#add-info{
+  padding-right: 15%;
+  padding-left: 15%;
+  padding-top: 30px;
+  text-align: justify;
+}
+
+#search input[type = submit]{
+  border: none;
+}
+
+.c1{
+  width: 5%;
+}
+.c2{
+  width: 10%;
+}
+.c3{
+  width: 15%;
+}
+.c4{
+  width: 20%;
+}
+.c5{
+  width: 25%;
+}
+.c6{
+  width: 30%;
+}
+
+.enable{
+  font-size: 2em;
+  color: #2A4B9B;
+}
+.disable{
+  font-size: 2em;
+  color: #6E7592;
+}
+
+tr{
+  height: 50px;
+}
+
+.button-link-action{
+  display: block;
+  margin: 5px 15px 5px 15px;
+  padding: 5px;
+  text-decoration: none;
+  border-radius: 15px;
+  color: #fff;
+}
+
+.vigente{
+  background-color: #025F45;
+}
+.proceso{
+  background-color: #2A4B9B;
+}
+.finalizado{
+  background-color: #E11E1C;
+}
+.ver{
+  background-color: #50B793;
+}
+.seguimiento{
+  background-color: #6E7592;
+}
+.oculto{
+  visibility: hidden;
+}
+.postular{
+  background-color: #FED303;
+}
+
+.doble-button{
+  padding-top: 5px;
+  width: 100%;
+  display: flex;
+}
+
+.doble-button button:nth-child(1){
+  width: 60%;
+  margin: 5px;
+}
+.doble-button button:nth-child(2){
+  width: 40%;
+  margin: 5px;
+}

@@ -5,7 +5,7 @@
         <h3 class="fw-bold mt-2 mb-4">Administración de las Convocatorias</h3>
         <hr class="mb-2">
 
-        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#calificacionModal" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
+        <button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#verRequMinModal" (click)="resetForm(modalForm)"><i class="fas fa-plus-circle"></i> Agregar</button>
         <!--<button style="width:155px;" type="button" class="btn btn-success m-1" data-bs-toggle="modal" data-bs-target="#modal-add-csv" (click)='resetForm(modalFormCSV)'><i class="fas fa-file-import"></i> Importar CSV</button>-->
 
         <form class="row mt-2" #searchForm="ngForm" (submit)="filtrar(search.value, search_type.value)">
@@ -37,7 +37,7 @@
                                 <th scope="col" class="text-center">CARPETA</th>
                                 <th scope="col" class="text-center">PARTICIPANTES</th>
                                 <th scope="col" class="text-center">OPERACIONES</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody class="bg-white">
@@ -614,8 +614,8 @@
             <i class="fa-solid fa-square-xmark" style="color: #E11E1C; font-size: 1.3em;"></i>
           </button>
         </div>
-        
-        
+
+
         <div class="tab-content px-4 pt-3" id="myTabContent">
           <div class="tab-pane fade show active" id="eva_curricular_profesional" role="tabpanel" aria-labelledby="home-tab">
             <form action="">
@@ -638,7 +638,7 @@
                         <p class="col-8">Grado Académico de Maestro o Doctor:</p>
                         <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
                         <p class="col-2">Puntos</p>
-                      </div>              
+                      </div>
                     </fieldset>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
@@ -707,7 +707,7 @@
                         <p class="col-8">Número máximo de cursos:</p>
                         <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
                         <p class="col-2">Puntos</p>
-                      </div>            
+                      </div>
                     </fieldset>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
@@ -744,7 +744,7 @@
                           o afines:</p>
                         <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
                         <p class="col-2">Puntos</p>
-                      </div>          
+                      </div>
                     </fieldset>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
@@ -813,7 +813,7 @@
                         <p class="col-8">Número máximo de cursos:</p>
                         <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
                         <p class="col-2">Puntos</p>
-                      </div>            
+                      </div>
                     </fieldset>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
@@ -847,7 +847,7 @@
                         <p class="col-8">Estudios de Secundaria completa:</p>
                         <input type="number" class="col-2" name="" id="" value="16" style="height: 25px; margin-right: 10px;text-align: end;">
                         <p class="col-2">Puntos</p>
-                      </div>           
+                      </div>
                     </fieldset>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
@@ -916,7 +916,7 @@
                         <p class="col-8">Número máximo de cursos:</p>
                         <input type="number" class="col-2" name="" id="" value="10" style="height: 25px; margin-right: 10px;text-align: end;">
                         <p class="col-2">Puntos</p>
-                      </div>            
+                      </div>
                     </fieldset>
                   </div>
                   <div class="d-flex flex-column justify-content-center align-middle text-center col-3">
@@ -938,6 +938,286 @@
                 </div>
               </div>
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL VER REQUISITOS MINIMOS -->
+<!-- MODAL VER REQUISITOS MINIMOS -->
+<!-- MODAL VER REQUISITOS MINIMOS -->
+
+
+<div class="modal fade" id="verRequMinModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="calificacionModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-body" >
+        <div class="d-flex">
+          <ul class="nav nav-tabs col-11" id="myTabVerReqMin" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="dat_personales-tab" data-bs-toggle="tab" data-bs-target="#dat_personales" type="button" role="tab" aria-controls="profesional" aria-selected="false" style="color: #025F45; font-weight: bold">Datos Personales</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="form_aca-tab" data-bs-toggle="tab" data-bs-target="#form_aca" type="button" role="tab" aria-controls="tecnico" aria-selected="false" style="color: #025F45; font-weight: bold">Formación Acádemica</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="cursos_especializaciones-tab" data-bs-toggle="tab" data-bs-target="#cursos_especializaciones" type="button" role="tab" aria-controls="auxiliar" aria-selected="false" style="color: #025F45; font-weight: bold">Cursos y/o Especilizaciones</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="ex_laboral-tab" data-bs-toggle="tab" data-bs-target="#ex_laboral" type="button" role="tab" aria-controls="auxiliar" aria-selected="false" style="color: #025F45; font-weight: bold">Experiencia Laboral</button>
+            </li>
+          </ul>
+          <button type="button" class='btn-cerrar col-1' data-bs-dismiss="modal" aria-label="Close" style="border: none; background: none;">
+            <i class="fa-solid fa-square-xmark" style="color: #E11E1C; font-size: 1.3em;"></i>
+          </button>
+        </div>
+
+
+        <div class="tab-content px-4 pt-3" id="myTabVerReqMinContent">
+          <div class="tab-pane fade show active" id="dat_personales" role="tabpanel" aria-labelledby="home-tab">
+            <form id="form-th" action="" method="post">
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="documento">Documento</label>
+                  <input type="text" name="documento" id="documento"  placeholder="DNI">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="dni">Número de Documento</label>
+                  <input type="text" name="dni" id="dni" placeholder="Ingrese DNI">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="ruc">RUC</label>
+                  <input type="text" name="ruc" id="ruc" placeholder="Ingrese RUC">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-6">
+                  <label for="ap_paterno">Apellido Paterno</label>
+                  <input type="text" name="ap_paterno" id="ap_paterno" placeholder="Ingrese Apellido Paterno">
+                </div>
+                <div class="fc-input d-flex flex-column col-6">
+                  <label for="ap_materno">Apellido Materno</label>
+                  <input type="text" name="ap_materno" id="ap_materno" class="ap_materno" placeholder="Ingrese Apellido Materno">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-6">
+                  <label for="nombres">Nombres</label>
+                  <input type="text" name="nombres" id="nombres" placeholder="Ingrese Nombres">
+                </div>
+                <div class="fc-input d-flex flex-column col-6">
+                  <label for="sexo">Sexo</label>
+                  <input type="text" name="sexo" id="sexo" placeholder="Sexo">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-6">
+                  <label for="f_nacimiento">Fecha de Nacimiento</label>
+                  <input type="date" name="f_nacimiento" id="f_nacimiento" placeholder="Ingrese Apellido Paterno">
+                </div>
+                <div class="fc-input d-flex flex-column col-6">
+                  <label for="l_nacimiento">Lugar de Nacimiento</label>
+                  <input type="text" name="l_nacimiento" id="l_nacimiento" placeholder="Ingrese Lugar de Nacimiento">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="ln_departamento">Departamento</label>
+                  <input type="text" name="departamento" id="ln_departamento"  placeholder="Seleccione">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="ln_provincia">Provincia</label>
+                  <input type="text" name="provincia" id="provVivList" placeholder="Seleccione">
+
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="ln_distrito">Distrito</label>
+                  <input type="text" name="distrito" id="disVivList" placeholder="Seleccione">
+
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-12">
+                  <label for="direccion">Dirección de Vivienta</label>
+                  <input type="text" name="direccion" id="direccion"  placeholder="Ingrese dirección">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="n_departamento">Departamento</label>
+                  <input type="text" name="n_departamento" id="n_departamento"  placeholder="Seleccione">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="n_provincia">Provincia</label>
+                  <input type="text" name="n_provincia" id="n_provincia" placeholder="Seleccione">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="n_distrito">Distrito</label>
+                  <input type="text" name="n_distrito" id="n_distrito" placeholder="Seleccione">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="email">Correo</label>
+                  <input type="text" name="email" id="email"  placeholder="Ingrese Correo">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="celular">Celular</label>
+                  <input type="text" name="celular" id="celular" placeholder="Ingrese Celular">
+                </div>
+                <div class="fc-input d-flex flex-column col-4">
+                  <label for="telefono">Teléfono</label>
+                  <input type="text" name="telefono" id="telefono" placeholder="Ingrese Teléfono">
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="fc-input d-flex flex-column col-3">
+                  <label for="e_civil">Estado Civil</label>
+                  <input type="text" name="e_civil" id="e_civil"  placeholder="Seleccione">
+                </div>
+                <div class="fc-input d-flex flex-column col-3">
+                  <label for="nacionalidad">Nacionalidad</label>
+                  <input type="text" name="nacionalidad" id="nacionalidad" placeholder="Seleccione">
+                </div>
+                <div class="fc-input d-flex flex-column col-3">
+                  <label for="f_armadas">Fuerzas Armadas</label>
+                  <input type="text" name="f_armadas" id="f_armadas" placeholder="Seleccione">
+                </div>
+                <div class="fc-input d-flex flex-column col-3">
+                  <label for="discapacidad">Discapacidad</label>
+                  <input type="text" name="discapacidad" id="discapacidad" placeholder="Seleccione">
+                </div>
+              </div>
+              <div class="col-12 d-flex justify-content-center">
+                <div class="col-sm-3">
+                  <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="tab-pane fade" id="form_aca" role="tabpanel" aria-labelledby="profile-tab">
+            <div id="resumen" class="d-flex justify-content-center">
+              <table class="table-hover table-bordered">
+                <thead class="t-head">
+                <tr>
+                  <th>Nombre de la Institución</th>
+                  <th>Grado Acádemico</th>
+                  <th>Profesión o Especialidad</th>
+                  <th>Fecha de Expédito</th>
+                  <th>Número de Colegiatura</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Fin</th>
+                  <th>Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Universidad Nacional del Centro del Perú</td>
+                  <td>Titulado</td>
+                  <td>Ing. Eléctrica y Electrónica</td>
+                  <td>20/04/2022</td>
+                  <td>0000005</td>
+                  <td>20/04/2022</td>
+                  <td>20/04/2022</td>
+                  <td>
+                    <button class="delete-button">
+                      <i class="fa-solid fa-trash-can color-rojo"></i> Eliminar
+                    </button>
+                  </td>
+
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="cursos_especializaciones" role="tabpanel" aria-labelledby="contact-tab">
+            <div id="resumen" class="d-flex justify-content-center">
+              <table class="table-hover table-bordered">
+                <thead class="t-head">
+                <tr>
+                  <th>Tipo</th>
+                  <th>Nombre de Curso</th>
+                  <th>Nombre de la Institución</th>
+                  <th>Fecha de Inicio</th>
+                  <th>Fecha de Fin</th>
+                  <th>Cantidad de Horas</th>
+                  <th>Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Especialización</td>
+                  <td>Curso de Especialización en análisis de datos</td>
+                  <td>Universidad Nacional del Centro del Perú</td>
+                  <td>15/03/2018</td>
+                  <td>15/03/2022</td>
+                  <td>120 Horas</td>
+                  <td>
+                    <button class="delete-button">
+                      <i class="fa-solid fa-trash-can color-rojo"></i> Eliminar
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="ex_laboral" role="tabpanel" aria-labelledby="contact-tab">
+            <div id="resumen" class="d-flex justify-content-center">
+              <table class="table-hover table-bordered">
+                <thead class="t-head">
+                <tr>
+                  <th>Tipo de Experiencia</th>
+                  <th>Tipo de Entidad</th>
+                  <th>Nombre de la Empresa o Entidad</th>
+                  <th>Cargo Desempeñado</th>
+                  <th>Referencia</th>
+                  <th>Celular</th>
+                  <th>Tiempo Acumulado</th>
+                  <th>Fecha de Inicio</th>
+                  <th>Fecha de Fin</th>
+                  <th>Acción</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>Específica</td>
+                  <td>Pública</td>
+                  <td>JuanitaLateos SAC</td>
+                  <td>Encargado de reparaciones e
+                    instalaciones eléctricas en planta</td>
+                  <td>Juan Perez Suares</td>
+                  <td>987456321</td>
+                  <td>6 meses</td>
+                  <td>15/03/2018</td>
+                  <td>15/03/2022</td>
+                  <td>
+                    <button class="delete-button">
+                      <i class="fa-solid fa-trash-can color-rojo"></i> Eliminar
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="col-12 d-flex justify-content-center">
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-cerrar w-100 btn-danger m-1" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

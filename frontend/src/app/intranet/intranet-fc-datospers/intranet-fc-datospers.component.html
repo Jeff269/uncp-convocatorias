@@ -91,16 +91,29 @@
         </div>
         <div class="d-flex">
           <div class="fc-input d-flex flex-column col-4">
-            <label for="departamento">Departamento <b>*</b></label>
-            <input type="text" name="departamento" id="departamento"  placeholder="Seleccione">
+            <label for="depNacList">Departamento <b>*</b></label>
+            <select name="city" id="depNacList">
+              <option value="" >Junín</option>
+            </select>
           </div>
           <div class="fc-input d-flex flex-column col-4">
-            <label for="provincia">Provincia <b>*</b></label>
-            <input type="text" name="provincia" id="provincia" placeholder="Seleccione">
+            <label for="provNacList">Provincia <b>*</b></label>
+            <select name="city" id="provNacList">
+              <option value="" >Huancayo</option>
+              <option value="">Chanchamayo</option>
+              <option value="" selected="selected">Huancayo</option>
+              <option value="">Jauja</option>
+              <option value="">Satipo</option>
+              <option value="">Tarma</option>
+              <option value="">Yauli</option>
+            </select>
           </div>
           <div class="fc-input d-flex flex-column col-4">
-            <label for="distrito">Distrito <b>*</b></label>
-            <input type="text" name="distrito" id="distrito" placeholder="Seleccione">
+            <label for="distNacList">Distrito <b>*</b></label>
+            <select name="city" id="distNacList">
+              <option value="" >Chilca</option>
+              <option value="" >El Tambo</option>
+            </select>
           </div>
         </div>
         <div class="d-flex">
@@ -111,16 +124,28 @@
         </div>
         <div class="d-flex">
           <div class="fc-input d-flex flex-column col-4">
-            <label for="n_departamento">Departamento <b>*</b></label>
-            <input type="text" name="n_departamento" id="n_departamento"  placeholder="Seleccione">
+            <label for="depVivList">Departamento <b>*</b></label>
+            <select name="city" id="depVivList">
+              <option value="" >Junín</option>
+            </select>
           </div>
           <div class="fc-input d-flex flex-column col-4">
-            <label for="n_provincia">Provincia <b>*</b></label>
-            <input type="text" name="n_provincia" id="n_provincia" placeholder="Seleccione">
+            <label for="provVivList">Provincia <b>*</b></label>
+            <select name="city" id="provVivList">
+              <option value="">Chanchamayo</option>
+              <option value="" selected="selected">Huancayo</option>
+              <option value="">Jauja</option>
+              <option value="">Satipo</option>
+              <option value="">Tarma</option>
+              <option value="">Yauli</option>
+            </select>
           </div>
           <div class="fc-input d-flex flex-column col-4">
-            <label for="n_distrito">Distrito <b>*</b></label>
-            <input type="text" name="n_distrito" id="n_distrito" placeholder="Seleccione">
+            <label for="distVivList">Distrito <b>*</b></label>
+            <select name="city" id="distVivList">
+              <option value="" >Chilca</option>
+              <option value="">El Tambo</option>
+            </select>
           </div>
         </div>
         <div class="d-flex">
@@ -163,7 +188,31 @@
         <div class="d-flex justify-content-center">
           <input type="submit" value="Guardar" class="input-submit">
         </div>
+        <div>
+          <div class="container">
+            <h1>Ubigeos Perú <small>Listado en select dependiente</small></h1>
+            <div class="row">
+              <div class="col-lg-4">
+                <select name="cb_departamento" id="cb_departamento" class="form-control">
+                  <option disabled selected>Seleccione departamento</option>
+                </select>
+              </div>
+              <div class="col-lg-4">
+                <select name="cb_provincia" id="cb_provincia" class="form-control">
+                  <option disabled selected>Seleccione provincia</option>
+                </select>
+              </div>
+
+              <div class="col-lg-4">
+                <select name="cb_distrito" id="cb_distrito" class="form-control">
+                  <option disabled selected>Seleccione distrito</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
     </div>
   </div>
+
 </div>

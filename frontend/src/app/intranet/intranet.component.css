@@ -161,7 +161,7 @@ hr{
   padding-top: 3px;
 }
 
-.fc-input input{
+.fc-input input,.fc-input select{
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 25px;
@@ -195,6 +195,7 @@ hr{
 
 #resumen{
   padding: 15px;
+  width: 100%;
 }
 
 #resumen h4{
@@ -203,6 +204,7 @@ hr{
 }
 
 #resumen table{
+  width: 100%;
   text-align: center;
   font-size: 0.8em;
   border: 1px solid #ABB5BD;
@@ -236,14 +238,6 @@ hr{
 
 #search input[type = submit]{
   border: none;
-}
-
-#resumen{
-  width: 100%;
-}
-
-#resumen>table{
-  width: 100%;
 }
 
 .c1{
