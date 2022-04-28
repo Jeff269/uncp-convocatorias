@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function onLoad_Request() {
       ubigeoPeru.ubigeos = JSON.parse(request.responseText);
       showRegionsList();
-      console.log(ubigeoPeru.ubigeos);
   }
 });
 
@@ -20,22 +19,21 @@ function showRegionsList() {
   ubigeoPeru.ubigeos.forEach(function(ubigeo) {
     if (ubigeo.provincia === '00' && ubigeo.distrito === '00') {
 
-      var option = document.createElement('option');
+      let option = document.createElement('option');
 
       option.id = 'dpto-' + ubigeo.departamento;
       option.name = 'departamento';
       option.value = ubigeo.departamento;
 
-
-
-      document.querySelector('#cb_departamento').appendChild(option);
-      const option2 = document.getElementById(option.id);
-      option2.addEventListener('click', onChange_Region, false);
-      option2.addEventListener('click', function (){console.log('funcion?')}, false);
+      option.addEventListener('change', onChange_Region, false);
 
       option.textContent = ubigeo.nombre;
+
+      document.querySelector('#depNacList').appendChild(option);
     }
   });
+  let option2 = document.getElementById('depNacList');
+  option2.addEventListener('change', onChange_Region, false);
 }
 
 function test(){
@@ -44,8 +42,8 @@ function test(){
 
 function onChange_Region() {
 
-  document.querySelector('#cb_provincia').innerHTML = '';
-  document.querySelector('#cb_distrito').innerHTML = '';
+  document.querySelector('#provNacList').innerHTML = '';
+  document.querySelector('#distNacList').innerHTML = '';
   showProvincesList(this.value);
   console.log('region cambio');
 }
@@ -65,16 +63,19 @@ function showProvincesList(departamento) {
 
       option.textContent = ubigeo.nombre;
 
-      document.querySelector('#cb_provincia').appendChild(option);
+      document.querySelector('#provNacList').appendChild(option);
     }
   });
+
+  let option2 = document.getElementById('provNacList');
+  option2.addEventListener('change', onChange_Province, false);
 }
 
 function onChange_Province() {
 
-  document.querySelector('#cb_distrito').innerHTML = '';
+  document.querySelector('#distNacList').innerHTML = '';
 
-  var departamento = document.getElementById('cb_departamento').value;
+  var departamento = document.getElementById('depNacList').value;
 
   showDistrictsList(departamento, this.value);
 }
@@ -92,8 +93,9 @@ function showDistrictsList(departamento, provincia) {
       option.value = ubigeo.distrito;
       option.textContent = ubigeo.nombre;
 
-      document.querySelector('#cb_distrito').appendChild(option);
+      document.querySelector('#distNacList').appendChild(option);
     }
 
   });
+
 }
