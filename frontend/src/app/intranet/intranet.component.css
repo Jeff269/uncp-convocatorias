@@ -19,7 +19,7 @@
   height: 60px;
 }
 
-#contenido>p{
+#correo>p{
   text-align: center;
   color: #025F45;
   font-weight: bold;
@@ -28,9 +28,9 @@
 #card{
   width: 500px;
   box-shadow: 0 0 10px #ABB5BD;
-  border-radius: 15px;
+  border-radius: 7px !important;
   padding: 30px;
-  border-bottom: 7px solid #025F45;
+  border-bottom: 3px solid #025F45;
 }
 
 .icon-exclamation{
@@ -40,23 +40,34 @@
 
 #card p{
   color: #6E7592;
-  padding-right: 15%;
-  padding-left: 15%;
+  padding: 0 5%;
   text-align: justify;
 }
-#card h4{
+#card h4,#contenido h4{
   color: #025F45;
   padding-left: 15px;
 }
 #card a{
-  padding: 8px;
+  padding: 5px 15px;
+  height: 35px;
   color: #fff;
   background-color: #025F45;
   border: none;
-  box-shadow: 0 3px 10px #50B793;
+  box-shadow: 0 3px 10px #33cc99;
   text-decoration: none;
   border-radius: 15px;
+  margin-top: 15px;
 }
+
+#card .d-flex{
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+#card img{
+  width: 40px;
+}
+
 #redirect{
   width: 100%;
   display: flex;
@@ -70,12 +81,12 @@
 }
 
 .circular-icon{
-  width: 20px;
+  width: 25px;
   height: 20px;
   background-color: #fff;
   color: #025F45;
-  border-radius: 50%;
   padding: 7px;
+  border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
 }
 .menu-route p{
   padding-top: 15px;
@@ -99,12 +110,16 @@ button{
   width: 100%;
   padding-left: 10%;
   padding-right: 10%;
+  padding-bottom: 40px;
 }
-#contenido>div,.caja-sombra{
+#contenido>div{
   box-shadow: 0 0 10px #ABB5BD;
   border-radius: 0 0 15px 15px;
 }
-
+.caja-sombra{
+  box-shadow: 0 0 10px #ABB5BD;
+  border-radius: 15px;
+}
 #contenido div{
   margin: 0;
 }
@@ -124,16 +139,16 @@ hr{
 
 .fc-menu-route p{
   height: 30px;
-  padding-top: 15px;
+  padding-top: 13px;
   padding-left: 5px;
-  color: #025F45;
+  color: #6E7592;
 }
 
 .fc-circular-icon{
   width: 20px;
   height: 20px;
   color: #fff;
-  background-color: #025F45;
+  background-color: #33cc99;
   border-radius: 50%;
   padding: 7px;
 }
@@ -143,7 +158,7 @@ hr{
   height: 42px;
   padding: 3px;
   margin: 0;
-  border: 1px solid #025F45;
+  border: 1px solid #33cc99;
   border-radius: 50%;
 }
 .fc-input{
@@ -159,6 +174,11 @@ hr{
 
 .fc-input input[type = file]{
   padding-top: 3px;
+}
+
+.fc-input input[type = file]{
+  background-color: #2A4B9B;
+  color: #ffff;
 }
 
 .fc-input input,.fc-input select{
@@ -190,16 +210,16 @@ hr{
   border: none;
   background-color: #025F45;
   color: #fff;
-  box-shadow: 0 3px 6px #50B793 ;
+  box-shadow: 0 3px 6px #33cc99 ;
 }
 
 #resumen{
-  padding: 15px;
+  padding: 0 15px 10px;
   width: 100%;
 }
 
 #resumen h4{
-  color: #50B793;
+  color: #33cc99;
   padding-left: 20px;
 }
 
@@ -210,19 +230,32 @@ hr{
   border: 1px solid #ABB5BD;
 }
 
+.form-control:focus {
+  border-color: #33cc99;
+  box-shadow: 0 0 0 0.2rem #50B793;
+}
 
 .color-rojo{
   padding-top: 4px;
   color: #E62248;
   font-size: 1.2em;
 }
+.message-blue{
+  padding: 15px;
+}
 .message-blue p{
   color: blue !important;
+  font-style: oblique;
+  font-weight: normal;
 }
 
 .message-blue input[type = checkbox]{
-  width: 100px;
+  width: 5em;
+  height: 3em;
+  margin: 0;
+  accent-color: #3b8d00;
 }
+
 
 .t-head{
   background-color: #025F45;
@@ -291,7 +324,7 @@ tr{
   background-color: #E11E1C;
 }
 .ver{
-  background-color: #50B793;
+  background-color: #33cc99;
 }
 .seguimiento{
   background-color: #6E7592;
@@ -319,7 +352,6 @@ tr{
 }
 
 #foot{
-  margin-top: 45px;
   padding-top: 7px;
   width: 100%;
   height: 30px;
@@ -327,8 +359,10 @@ tr{
   text-align: center;
   color: #fff;
   font-size: 0.7em;
-  position: absolute;
+  position: fixed;
+  bottom: 0;
 }
+
 
 
 .icon-container{
@@ -337,7 +371,7 @@ tr{
 }
 .icon-container>input{
   width: 100%;
-  height: 45px;
+  height: 35px;
   border-radius: 25px;
   padding-left: 15px;
 }
@@ -349,17 +383,17 @@ tr{
   color: #fff;
   background-color: #025F45;
   border: none;
-  box-shadow: 0 3px 10px #50B793;
+  box-shadow: 0 3px 10px #33cc99;
   padding: 0;
 }
 
 .input-icon{
   margin-right: 7px;
-  background-color: #50B793;
+  background-color: #33cc99;
   position: absolute;
-  width: 20px;
-  height: 20px;
-  right: 5px;
+  width: 15px;
+  height: 15px;
+  right: 2px;
   top: 50%;
   transform: translateY(-50%);
   color: #fff;
@@ -438,6 +472,16 @@ tr{
   padding: 30px;
   border-bottom: 7px solid #025F45;
 }
+#correo>p{
+  font-size: 1.5em;
+}
+#correo>div>.d-flex{
+  align-items: center;
+  margin-bottom: 15px;
+}
+#correo>div>.d-flex img{
+  width: 40px;
+}
 
 #correos div{
   align-items: center;
@@ -460,9 +504,11 @@ tr{
 
 .links p:nth-child(2){
   background-color: #E7E6E6;
-  color: #2A4B9B;
+  color: #0000ff;
   height: 45px;
   padding-top: 10px;
+  padding-left: 10px;
+  font-style: italic;
 }
 #less20{
   padding: 0 5%;
@@ -533,4 +579,32 @@ tr{
 .btn-cerrar .fa-square-xmark{
   color: #E11E1C;
   font-size: 2em;
+}
+
+#submenu a{
+  padding: 0 15px;
+  margin: 0;
+}
+
+#submenu p{
+  margin-left: 8px;
+}
+
+#submenu a:hover,.menu-resaldato{
+  background-color: #FED303 !important;
+  color: #FED303;
+}
+
+#submenu a:hover .circular-icon,.menu-resaldato .circular-icon{
+  color: #FED303;
+}
+
+.menu-fc-resaltado p{
+  color: #025F45 !important;
+}
+.menu-fc-resaltado .fc-circular-icon{
+  background-color: #025F45;
+}
+.menu-fc-resaltado .ext-border{
+  border: 1px solid #025F45 !important;
 }
